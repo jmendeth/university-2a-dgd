@@ -1,4 +1,4 @@
-\documentclass[catalan,varwidth=30em,border=15pt,crop=false,preview=true]{standalone}
+\documentclass[catalan,border=15pt]{standalone}
 
 % encoding
 \usepackage[utf8]{inputenc}
@@ -12,10 +12,6 @@
 \usepackage[style=spanish]{csquotes}
 \MakeAutoQuote{«}{»}
 
-% general design preferences (page, paragraph indent/space, margins, class options, ...)
-\setlength{\parskip}{20pt}
-%%\pagestyle{plain}
-
 % ADD ANY SPECIFIC PACKAGES HERE
 % (CHEMISTRY, CODE, PUBLISHING)
 \usepackage{circuitikz}
@@ -28,22 +24,19 @@
 \AfterPreamble{\hypersetup{
   pdfauthor={Xavier Mendez},
   pdftitle={Simplificació d'expressió algebraica},
-  %%pdfsubject={},
+  pdfsubject={DGD},
 }}
 
-% document metadata
-%%\author{}
-%%\title{}
-%%\date{}
-
 \begin{document}
+\begin{minipage}{30em}
+\setlength{\parskip}{7pt}
 
 
 La expressió algebraica escrita directament del logigrama és:
 
 \begin{equation*}
   f(a,b,c) = \overline{
-    \overline{\left( a b c \right)} \cdot
+    \overline{\left(\vphantom{\overline{b}} a b c \right)} \cdot
     \overline{\left( a \overline{b} c \right)} \cdot
     \left( \overline{b} + c \right)
   }
@@ -51,9 +44,14 @@ La expressió algebraica escrita directament del logigrama és:
 
 Simplifiquem:
 
-\begin{minipage}{\linewidth}
 \begin{align*}
-  f(a,b,c) &=
+  f(a,b,c) &= \overline{
+    \overline{\left(\vphantom{\overline{b}} a b c \right)} \cdot
+    \overline{\left( a \overline{b} c \right)} \cdot
+    \left( \overline{b} + c \right)
+  }
+\\
+  &=
     \left( a b c \right) +
     \left( a \overline{b} c \right) +
     \overline{\left( \overline{b} + c \right)}
@@ -71,7 +69,6 @@ Simplifiquem:
     a c +
     b \overline{c}
 \end{align*}
-\end{minipage}
 
 Fent el logigrama, resulta:
 
@@ -93,5 +90,22 @@ Fent el logigrama, resulta:
 
 ; \end{circuitikz} \end{center}
 
+Per comprovar que el comportament és equivalent a l'enunciat,
+fem la taula de veritat i veiem que coincideix.
 
+\begin{center} \begin{tabular}{cc}
+$cba$ & $f$ \\
+\hline
+000 & 0 \\
+001 & 0 \\
+010 & 1 \\
+011 & 1 \\
+100 & 0 \\
+101 & 1 \\
+110 & 0 \\
+111 & 1
+\end{tabular} \end{center}
+
+
+\end{minipage}
 \end{document}
