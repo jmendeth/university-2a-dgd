@@ -1,0 +1,79 @@
+\documentclass[catalan,varwidth=30em,border=15pt,crop=false,preview=true]{standalone}
+
+% encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{babel}
+
+% formatting and fixes
+\usepackage{fixltx2e}
+\frenchspacing
+\usepackage[style=spanish]{csquotes}
+\MakeAutoQuote{«}{»}
+
+% general design preferences (page, paragraph indent/space, margins, class options, ...)
+%%\setlength{\parskip}{10pt}
+%%\pagestyle{plain}
+
+% ADD ANY SPECIFIC PACKAGES HERE
+% (CHEMISTRY, CODE, PUBLISHING)
+\usepackage{circuitikz}
+\usepackage{amsmath}
+
+% other options
+
+% hyperlink setup / metadata
+\usepackage{hyperref}
+\AfterPreamble{\hypersetup{
+  pdfauthor={Xavier Mendez},
+  pdftitle={Simplificació d'expressió algebraica},
+  %%pdfsubject={},
+}}
+
+% document metadata
+%%\author{}
+%%\title{}
+%%\date{}
+
+\begin{document}
+
+
+La expressió algebraica escrita directament del logigrama és:
+
+\begin{equation*}
+  f(a,b,c) = \overline{
+    \overline{\left( a b c \right)} \cdot
+    \overline{\left( a \overline{b} c \right)} \cdot
+    \left( \overline{b} + c \right)
+  }
+\end{equation*}
+
+Simplifiquem:
+
+\begin{minipage}{\linewidth}
+\begin{align*}
+  f(a,b,c) &=
+    \left( a b c \right) +
+    \left( a \overline{b} c \right) +
+    \overline{\left( \overline{b} + c \right)}
+\\
+  &=
+    a b c +
+    a \overline{b} c +
+    b \overline{c}
+\\
+  &=
+    a \left( b + \overline{b} \right) c +
+    b \overline{c}
+\\
+  &=
+    a c +
+    b \overline{c}
+\end{align*}
+\end{minipage}
+
+
+
+
+\end{document}
