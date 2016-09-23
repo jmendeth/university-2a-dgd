@@ -13,7 +13,7 @@
 \MakeAutoQuote{«}{»}
 
 % general design preferences (page, paragraph indent/space, margins, class options, ...)
-%%\setlength{\parskip}{10pt}
+\setlength{\parskip}{20pt}
 %%\pagestyle{plain}
 
 % ADD ANY SPECIFIC PACKAGES HERE
@@ -73,7 +73,25 @@ Simplifiquem:
 \end{align*}
 \end{minipage}
 
+Fent el logigrama, resulta:
 
+\begin{center} \begin{circuitikz}[scale=1] \draw
+  (4,3) node[and port](and1){}
+  (1.7,0) node[not port](c_not){}
+  (4,1) node[and port](and2){}
+  (6,2) node[or port](or){}
+
+  (0,4) node[anchor=east]{$a$} -| (and1.in 1)
+  (0,2) node[anchor=east]{$b$} -| (and2.in 1)
+  (0,0) node[anchor=east]{$c$} -| (c_not.in)
+  (c_not.out) -| (and2.in 2)
+  (0,0) to[short, -*] ++(0.6,0) |- (and1.in 2)
+
+  (and1.out) -| (or.in 1)
+  (and2.out) -| (or.in 2)
+  (or.out) -- (7,2) node[anchor=west]{$f$}
+
+; \end{circuitikz} \end{center}
 
 
 \end{document}
