@@ -1,0 +1,361 @@
+\documentclass[catalan,border=15pt,class=scrartcl]{standalone}
+
+% encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{babel}
+
+% formatting and fixes
+\usepackage{fixltx2e}
+\frenchspacing
+\usepackage[style=spanish]{csquotes}
+\MakeAutoQuote{«}{»}
+
+% ADD ANY SPECIFIC PACKAGES HERE
+% (CHEMISTRY, CODE, PUBLISHING)
+\usepackage{circuitikz}
+\usetikzlibrary{circuits.logic.US,circuits.logic.IEC}
+\usepackage{amsmath}
+
+% other options
+
+% hyperlink setup / metadata
+\usepackage{hyperref}
+\AfterPreamble{\hypersetup{
+  pdfauthor={Xavier Mendez},
+  pdftitle={Simplificació mitjançant Karnaugh},
+  pdfsubject={DGD},
+}}
+
+\begin{document}
+\begin{minipage}{30em}
+\setlength{\parskip}{7pt}
+
+\newcommand{\D}{\overline{\vphantom{dbca}d}}
+\newcommand{\C}{\overline{\vphantom{dbca}c}}
+\newcommand{\B}{\overline{\vphantom{dbca}b}}
+\newcommand{\A}{\overline{\vphantom{dbca}a}}
+
+
+L'expressió donada és:
+
+\begin{equation*}
+  f(d,c,b,a) = m_1 + m_5 + m_7 + m_9 + m_{11}
+\end{equation*}
+
+O bé (suposant indexat $dcba$):
+
+\begin{equation*}
+  f(d,c,b,a) = \D \C \B a + \D c \B a + \D c b a + d \C \B a + d \C b a
+\end{equation*}
+
+Fem el mapa de Karnaugh:
+
+\begin{center} \begin{tabular}{lcccc}
+\hspace{-.7em} \tikz[baseline=.1em]{\node at (.5em,.5em) {$ba$}; \node at (-.5em,-.5em) {$dc$}; \draw (1em,-1em) -- (-1em,1em);}
+   & 00 & 01 & 11 & 10 \\
+00 &  0 &  1 &  0 &  0 \\
+01 &  0 &  1 &  1 &  0 \\
+11 &  0 &  0 &  0 &  0 \\
+10 &  0 &  1 &  1 &  0 \\
+\end{tabular} \end{center}
+
+
+\section*{Suma de productes}
+
+L'expressió simplificada en SdP quedaria:
+
+\begin{equation*}
+  f(d,c,b,a) = \D \B a + \D c a + d \C a
+\end{equation*}
+
+S'implementaria amb les portes següents:
+
+\begin{center} \begin{tabular}{rl}
+3 & NOT \\
+3 & AND3 \\
+1 & OR3 \\
+\end{tabular} \end{center}
+
+El logigrama quedaria així:
+
+\begin{center} \begin{circuitikz}[scale=1] \draw
+
+(0.0,0) coordinate (d) node[anchor=south] {$d$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(1.2,0) coordinate (d) node[anchor=south] {$c$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(2.4,0) coordinate (d) node[anchor=south] {$b$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(3.6,0) coordinate (d) node[anchor=south] {$a$} (d) -- ++(0,-5)
+%(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+%(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+%(d) ++(.5,-5) -- (d_not.output)
+
+;
+
+\node at (5,-2) [and gate US, draw, logic gate inputs=nnn] (and1) {};
+\foreach \a in {1,...,3}
+  \draw (and1.input \a -| -0.5,0) -- (and1.input \a);
+
+\node at (5,-3) [and gate US, draw, logic gate inputs=nnn] (and2) {};
+\foreach \a in {1,...,3}
+  \draw (and2.input \a -| -0.5,0) -- (and2.input \a);
+
+\node at (5,-4) [and gate US, draw, logic gate inputs=nnn] (and3) {};
+\foreach \a in {1,...,3}
+  \draw (and3.input \a -| -0.5,0) -- (and3.input \a);
+
+\draw
+  (6.4,-3) node[or gate US, draw, logic gate inputs=nnn] (or) {}
+  (or.input 1) -- ++(-0.2,0) |- (and1.output)
+  (or.input 2) -- ++(-0.2,0) |- (and2.output)
+  (or.input 3) -- ++(-0.2,0) |- (and3.output)
+  (or.output) -- ++(0.5,0) node[anchor=west] {$f$}
+;
+
+\draw
+  (and1.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
+  (and1.input 2 -| 2.4,0) ++(.5,0) node[circ] {}
+  (and1.input 3 -| 3.6,0)          node[circ] {}
+
+  (and2.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
+  (and2.input 2 -| 1.2,0)          node[circ] {}
+  (and2.input 3 -| 3.6,0)          node[circ] {}
+
+  (and3.input 1 -| 0.0,0)          node[circ] {}
+  (and3.input 2 -| 1.2,0) ++(.5,0) node[circ] {}
+  (and3.input 3 -| 3.6,0)          node[circ] {}
+;
+
+\end{circuitikz} \end{center}
+
+Passada a forma NAND de NANDs, l'expressió queda:
+
+\begin{equation*}
+  f(d,c,b,a) = \overline{
+    \overline{\left( \D \B a \right)} \cdot
+    \overline{\left( \D c a \right)} \cdot
+    \overline{\left( d \C a \right)}
+  }
+\end{equation*}
+
+El logigrama resultant és:
+
+\begin{center} \begin{circuitikz}[scale=1] \draw
+
+(0.0,0) coordinate (d) node[anchor=south] {$d$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(1.2,0) coordinate (d) node[anchor=south] {$c$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(2.4,0) coordinate (d) node[anchor=south] {$b$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(3.6,0) coordinate (d) node[anchor=south] {$a$} (d) -- ++(0,-5)
+%(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+%(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+%(d) ++(.5,-5) -- (d_not.output)
+
+;
+
+\node at (5,-2) [nand gate US, draw, logic gate inputs=nnn] (and1) {};
+\foreach \a in {1,...,3}
+  \draw (and1.input \a -| -0.5,0) -- (and1.input \a);
+
+\node at (5,-3) [nand gate US, draw, logic gate inputs=nnn] (and2) {};
+\foreach \a in {1,...,3}
+  \draw (and2.input \a -| -0.5,0) -- (and2.input \a);
+
+\node at (5,-4) [nand gate US, draw, logic gate inputs=nnn] (and3) {};
+\foreach \a in {1,...,3}
+  \draw (and3.input \a -| -0.5,0) -- (and3.input \a);
+
+\draw
+  (6.4,-3) node[nand gate US, draw, logic gate inputs=nnn] (or) {}
+  (or.input 1) -- ++(-0.2,0) |- (and1.output)
+  (or.input 2) -- ++(-0.2,0) |- (and2.output)
+  (or.input 3) -- ++(-0.2,0) |- (and3.output)
+  (or.output) -- ++(0.5,0) node[anchor=west] {$f$}
+;
+
+\draw
+  (and1.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
+  (and1.input 2 -| 2.4,0) ++(.5,0) node[circ] {}
+  (and1.input 3 -| 3.6,0)          node[circ] {}
+
+  (and2.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
+  (and2.input 2 -| 1.2,0)          node[circ] {}
+  (and2.input 3 -| 3.6,0)          node[circ] {}
+
+  (and3.input 1 -| 0.0,0)          node[circ] {}
+  (and3.input 2 -| 1.2,0) ++(.5,0) node[circ] {}
+  (and3.input 3 -| 3.6,0)          node[circ] {}
+;
+
+\end{circuitikz} \end{center}
+
+
+\section*{Producte de sumes}
+
+L'expressió simplificada en PdS quedaria:
+
+\begin{equation*}
+  f(d,c,b,a) = \left( \D + \C \right) \cdot \left( a \right) \cdot \left( d + c + \B \right)
+\end{equation*}
+
+S'implementaria amb les portes següents:
+
+\begin{center} \begin{tabular}{rl}
+3 & NOT \\
+1 & OR2 \\
+1 & OR3 \\
+1 & AND3 \\
+\end{tabular} \end{center}
+
+El logigrama quedaria així:
+
+\begin{center} \begin{circuitikz}[scale=1] \draw
+
+(0.0,0) coordinate (d) node[anchor=south] {$d$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(1.2,0) coordinate (d) node[anchor=south] {$c$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(2.4,0) coordinate (d) node[anchor=south] {$b$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(3.6,0) coordinate (d) node[anchor=south] {$a$} (d) -- ++(0,-5)
+%(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+%(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+%(d) ++(.5,-5) -- (d_not.output)
+
+;
+
+\node at (5,-2) [or gate US, draw, logic gate inputs=nn] (and1) {};
+\foreach \a in {1,...,2}
+  \draw (and1.input \a -| -0.5,0) -- (and1.input \a);
+
+\coordinate (and2) at (5,-3);
+\draw (and2 -| -0.5,0) -- (and2);
+
+\node at (5,-4) [or gate US, draw, logic gate inputs=nnn] (and3) {};
+\foreach \a in {1,...,3}
+  \draw (and3.input \a -| -0.5,0) -- (and3.input \a);
+
+\draw
+  (6.4,-3) node[and gate US, draw, logic gate inputs=nnn] (or) {}
+  (or.input 1) -- ++(-0.2,0) |- (and1.output)
+  (or.input 2) -- ++(-0.2,0) |- (and2)
+  (or.input 3) -- ++(-0.2,0) |- (and3.output)
+  (or.output) -- ++(0.5,0) node[anchor=west] {$f$}
+;
+
+\draw
+  (and1.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
+  (and1.input 2 -| 1.2,0) ++(.5,0) node[circ] {}
+
+  (and2         -| 3.6,0)          node[circ] {}
+
+  (and3.input 1 -| 0.0,0)          node[circ] {}
+  (and3.input 2 -| 1.2,0)          node[circ] {}
+  (and3.input 3 -| 2.4,0) ++(.5,0) node[circ] {}
+;
+
+\end{circuitikz} \end{center}
+
+Passada a forma NOR de NORs, l'expressió queda:
+
+\begin{equation*}
+  f(d,c,b,a) = \overline{
+    \overline{\left( \D + \C \right)} +
+    \overline{\left( a \right)} +
+    \overline{\left( d + c + \B \right)}
+  }
+\end{equation*}
+
+El logigrama resultant és:
+
+\begin{center} \begin{circuitikz}[scale=1] \draw
+
+(0.0,0) coordinate (d) node[anchor=south] {$d$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(1.2,0) coordinate (d) node[anchor=south] {$c$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(2.4,0) coordinate (d) node[anchor=south] {$b$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(3.6,0) coordinate (d) node[anchor=south] {$a$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+;
+
+\node at (5,-2) [nor gate US, draw, logic gate inputs=nn] (and1) {};
+\foreach \a in {1,...,2}
+  \draw (and1.input \a -| -0.5,0) -- (and1.input \a);
+
+\coordinate (and2) at (5,-3);
+\draw (and2 -| -0.5,0) -- (and2);
+
+\node at (5,-4) [nor gate US, draw, logic gate inputs=nnn] (and3) {};
+\foreach \a in {1,...,3}
+  \draw (and3.input \a -| -0.5,0) -- (and3.input \a);
+
+\draw
+  (6.4,-3) node[nor gate US, draw, logic gate inputs=nnn] (or) {}
+  (or.input 1) -- ++(-0.2,0) |- (and1.output)
+  (or.input 2) -- ++(-0.2,0) |- (and2)
+  (or.input 3) -- ++(-0.2,0) |- (and3.output)
+  (or.output) -- ++(0.5,0) node[anchor=west] {$f$}
+;
+
+\draw
+  (and1.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
+  (and1.input 2 -| 1.2,0) ++(.5,0) node[circ] {}
+
+  (and2         -| 3.6,0) ++(.5,0) node[circ] {}
+
+  (and3.input 1 -| 0.0,0)          node[circ] {}
+  (and3.input 2 -| 1.2,0)          node[circ] {}
+  (and3.input 3 -| 2.4,0) ++(.5,0) node[circ] {}
+;
+
+\end{circuitikz} \end{center}
+
+
+\end{minipage}
+\end{document}
