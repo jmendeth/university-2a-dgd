@@ -1,0 +1,203 @@
+\documentclass[catalan,border=15pt,class=scrartcl,multi=minipage]{standalone}
+
+% encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{babel}
+
+% formatting and fixes
+\usepackage{fixltx2e}
+\frenchspacing
+\usepackage[style=spanish]{csquotes}
+\MakeAutoQuote{«}{»}
+
+% ADD ANY SPECIFIC PACKAGES HERE
+% (CHEMISTRY, CODE, PUBLISHING)
+\usepackage{circuitikz}
+\usepackage{amsmath}
+
+% other options
+
+% hyperlink setup / metadata
+\usepackage{hyperref}
+\AfterPreamble{\hypersetup{
+  pdfauthor={Xavier Mendez},
+  pdftitle={T4. Problemes tema 1},
+  pdfsubject={DGD},
+}}
+
+\begin{document}
+\setlength{\parskip}{7pt}
+
+\begin{minipage}{30em}
+
+\paragraph{Problema 1.1}
+
+Per demostrar les igualtats, prenem com a definició: $a \oplus b = \left(a + b\right)\overline{\left(a \cdot b\right)}$.
+
+\begin{description}
+\item [{a)}] \begin{align*}
+  a \oplus b &= \overline{a} \oplus \overline{b} \\
+  \left(a + b\right)\overline{\left(a \cdot b\right)} &= \left(\overline{a} + \overline{b}\right)\overline{\left(\overline{a} \cdot \overline{b}\right)} \\
+  \left(a + b\right)\overline{\left(a \cdot b\right)} &= \overline{\left(a \cdot b\right)}\left(a + b\right)
+\end{align*}
+
+\item [{b)}] \begin{align*}
+  a \oplus 0 &= a \\
+  \left(a + 0\right)\overline{\left(a \cdot 0\right)} &= a \\
+  a \overline{0} &= a
+\end{align*}
+
+\item [{c)}] \begin{align*}
+  a \oplus 1 &= \overline{a} \\
+  \left(a + 1\right)\overline{\left(a \cdot 1\right)} &= \overline{a} \\
+  1 \overline{a} &= \overline{a}
+\end{align*}
+
+\item [{d)}] \begin{align*}
+  a \left(b \oplus c\right) &= ab \oplus ac \\
+  a \left[ \left(b + c\right)\overline{\left(b \cdot c\right)} \right] &= \left(ab + ac\right)\overline{\left(ab \cdot ac\right)} \\
+  a \left(b + c\right)\overline{\left(b \cdot c\right)} &= a \left(b + c\right)\overline{\left(a \cdot bc\right)} \\
+  a \left(b + c\right)\overline{\left(b \cdot c\right)} &= a \left(b + c\right)\left(\overline{a} + \overline{\left(bc\right)}\right) \\
+  a \left(b + c\right)\overline{\left(b \cdot c\right)} &= \left(b + c\right)\left(a\overline{a} + a \overline{\left(b \cdot c\right)}\right) \\
+  a \left(b + c\right)\overline{\left(b \cdot c\right)} &= \left(b + c\right) a \overline{\left(b \cdot c\right)}
+\end{align*}
+
+\item [{e)}] Podem demostrar que $a \oplus b = c \Rightarrow a \oplus c = b$ perquè si substituim la segona expressió en la primera, en resulta la identitat:
+
+\begin{align*}
+  c &= a \oplus \left(a \oplus c\right) \\
+  c &= \begin{cases}
+    0 \oplus \left(0 \oplus c\right) & \text{si $a = 0$} \\
+    1 \oplus \left(1 \oplus c\right) & \text{si $a = 1$} \\
+  \end{cases} \\
+  c &= \begin{cases}
+    0 \oplus c & \text{si $a = 0$} \\
+    1 \oplus \overline{c} & \text{si $a = 1$} \\
+  \end{cases} \\
+  c &= \begin{cases}
+    c & \text{si $a = 0$} \\
+    c & \text{si $a = 1$} \\
+  \end{cases}
+\end{align*}
+
+No és necessari demostrar les altres 5 relacions gràcies a la simetria.
+\end{description}
+
+\end{minipage}
+
+
+\begin{minipage}{30em}
+
+\paragraph{Problema 1.2}
+
+\begin{description}
+
+\item[{a)}] \begin{align*}
+  a + b + c + abc &= a + b + c \\
+  a + b + c\left(1 + ab\right) &= a + b + c \\
+  a + b + c \cdot 1 &= a + b + c
+\end{align*}
+
+\item[{b)}] \begin{align*}
+  a + b + c + \overline{\left(abc\right)} &= 1 \\
+  a + b + c + \overline{a} + \overline{b} + \overline{c} &= 1 \,\, \text{(veure \emph{c})}
+\end{align*}
+
+\item[{c)}] \begin{align*}
+  a + b + c + \overline{a} + \overline{b} + \overline{c} &= 1 \\
+  \left(a + \overline{a}\right) + b + c + \overline{b} + \overline{c} &= 1 \\
+  1 + \left(b + c + \overline{b} + \overline{c}\right) &= 1
+\end{align*}
+
+\item[{d)}] \begin{align*}
+  ab\left(c + cd\right) + \left(ac + a\right)bd &= ab\left(c + d\right) \\
+  abc\left(1 + d\right) + a\left(c + 1\right)bd &= abc + abd
+\end{align*}
+
+\item[{e)}] \begin{align*}
+  a\left(\overline{c} + ad\right) + c\overline{d} + ad\overline{a} &= a + c\overline{d} \\
+  a\overline{c} + ad + c\overline{d} + 0 &= a + c\overline{d} \\
+  a\left(\overline{c} + d\right) + c\overline{d} &= a + c\overline{d} \\
+  a\overline{\left(c\overline{d}\right)} + \left(c\overline{d}\right) &= a + c\overline{d} \\
+  a + \left(c\overline{d}\right) &= a + c\overline{d}
+\end{align*}
+
+\item[{f)}] \begin{align*}
+  \left(ab + c + d\right)\left(c + \overline{d}\right)\left(\left(c + \overline{d}\right) + a\right) &= ab\overline{d} + c \\
+  \left(ab + c + d\right)\left(\left(c + \overline{d}\right)\left(c + \overline{d}\right) + \left(c + \overline{d}\right)a\right) &= ab\overline{d} + c \\
+  \left(ab + c + d\right)\left(c + \overline{d}\right)\left(1 + a\right) &= ab\overline{d} + c \\
+  \left(ab + c + d\right)\left(c + \overline{d}\right) &= ab\overline{d} + c \\
+  c\left(ab + c + d\right) + \overline{d}\left(ab + c + d\right) &= ab\overline{d} + c \\
+  abc + c + dc + ab\overline{d} + c\overline{d} + d\overline{d} &= ab\overline{d} + c \\
+  ab\overline{d} + abc + c + dc + c\overline{d} + 0 &= ab\overline{d} + c \\
+  ab\overline{d} + c\left(ab + 1 + d + \overline{d}\right) &= ab\overline{d} + c
+\end{align*}
+
+\end{description}
+
+\end{minipage}
+
+
+\begin{minipage}{30em}
+
+\paragraph{Problema 1.8}
+
+El codi de la taula és \emph{ponderat} perquè és possible assignar un pes a cada bit.
+En aquest cas, es veu a simple vista que els pesos són $\left(a_3, a_2, a_1, a_0\right) = \left(2, 4, 2, 1\right)$.
+Es comprova que, efectivament, les combinacions quadren:
+
+\begin{align*}
+  0000 &\rightarrow 0 \cdot 2 + 0 \cdot 4 + 0 \cdot 2 + 0 \cdot 1 = 0 \\
+  0001 &\rightarrow 0 \cdot 2 + 0 \cdot 4 + 0 \cdot 2 + 1 \cdot 1 = 1 \\
+  0010 &\rightarrow 0 \cdot 2 + 0 \cdot 4 + 1 \cdot 2 + 0 \cdot 1 = 2 \\
+  0011 &\rightarrow 0 \cdot 2 + 0 \cdot 4 + 1 \cdot 2 + 1 \cdot 1 = 3 \\
+  0100 &\rightarrow 0 \cdot 2 + 1 \cdot 4 + 0 \cdot 2 + 0 \cdot 1 = 4 \\
+  1011 &\rightarrow 1 \cdot 2 + 0 \cdot 4 + 1 \cdot 2 + 1 \cdot 1 = 5 \\
+  1100 &\rightarrow 1 \cdot 2 + 1 \cdot 4 + 0 \cdot 2 + 0 \cdot 1 = 6 \\
+  1101 &\rightarrow 1 \cdot 2 + 1 \cdot 4 + 0 \cdot 2 + 1 \cdot 1 = 7 \\
+  1110 &\rightarrow 1 \cdot 2 + 1 \cdot 4 + 1 \cdot 2 + 0 \cdot 1 = 8 \\
+  1111 &\rightarrow 1 \cdot 2 + 1 \cdot 4 + 1 \cdot 2 + 1 \cdot 1 = 9
+\end{align*}
+
+De forma similar, es pot comprovar que és un codi \emph{autocomplementari} perquè
+en invertir la representació d'un valor s'obté la representació del valor complementari.
+
+\begin{align*}
+  0000 = 0 \, &\leftrightarrow \, 1111 = 9 \\
+  0001 = 1 \, &\leftrightarrow \, 1110 = 8 \\
+  0010 = 2 \, &\leftrightarrow \, 1101 = 7 \\
+  0011 = 3 \, &\leftrightarrow \, 1100 = 6 \\
+  0100 = 4 \, &\leftrightarrow \, 1011 = 5 \\
+  1011 = 5 \, &\leftrightarrow \, 0100 = 4 \\
+  1100 = 6 \, &\leftrightarrow \, 0011 = 3 \\
+  1101 = 7 \, &\leftrightarrow \, 0010 = 2 \\
+  1110 = 8 \, &\leftrightarrow \, 0001 = 1 \\
+  1111 = 9 \, &\leftrightarrow \, 0000 = 0
+\end{align*}
+
+\end{minipage}
+
+
+\begin{minipage}{30em}
+
+\paragraph{Problema 1.11}
+
+\begin{description}
+\item[{a)}] Sí, es un codi redundant perquè permet la detecció d'errors.
+
+\item[{b)}] La distància mínima és $2$, ja que es veu a simple vista que (a) no hi
+ha cap parella d'items que difereixin en només 1 bit, i (b) es pot trobar fàcilment
+un cas on variant 2 bits s'obté una altra representació del codi.
+
+\item[{c)}] No permet la correcció d'errors.
+
+\item[{d)}] No estic segur d'això, però la distància mínima continuaria essent $2$
+perquè es pot trobar fàcilment un cas on variant 2 bits s'obté una altra representació
+del codi protegit. Exemple: $00011\,0 \rightarrow 00111\,0 \rightarrow 00101\,0$
+\end{description}
+
+\end{minipage}
+
+\end{document}
