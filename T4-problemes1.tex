@@ -14,10 +14,13 @@
 
 % ADD ANY SPECIFIC PACKAGES HERE
 % (CHEMISTRY, CODE, PUBLISHING)
+\usepackage{mathtools}
 \usepackage{circuitikz}
-\usepackage{amsmath}
+\usetikzlibrary{circuits.logic.US,circuits.logic.IEC}
+\usetikzlibrary{calc}
 
 % other options
+\setcounter{tocdepth}{6}
 
 % hyperlink setup / metadata
 \usepackage{hyperref}
@@ -36,26 +39,25 @@
 
 Per demostrar les igualtats, prenem com a definició: $a \oplus b = \left(a + b\right)\overline{\left(a \cdot b\right)}$.
 
-\begin{description}
-\item [{a)}] \begin{align*}
+\subparagraph{Apartat A} \begin{align*}
   a \oplus b &= \overline{a} \oplus \overline{b} \\
   \left(a + b\right)\overline{\left(a \cdot b\right)} &= \left(\overline{a} + \overline{b}\right)\overline{\left(\overline{a} \cdot \overline{b}\right)} \\
   \left(a + b\right)\overline{\left(a \cdot b\right)} &= \overline{\left(a \cdot b\right)}\left(a + b\right)
 \end{align*}
 
-\item [{b)}] \begin{align*}
+\subparagraph{Apartat B} \begin{align*}
   a \oplus 0 &= a \\
   \left(a + 0\right)\overline{\left(a \cdot 0\right)} &= a \\
   a \overline{0} &= a
 \end{align*}
 
-\item [{c)}] \begin{align*}
+\subparagraph{Apartat C} \begin{align*}
   a \oplus 1 &= \overline{a} \\
   \left(a + 1\right)\overline{\left(a \cdot 1\right)} &= \overline{a} \\
   1 \overline{a} &= \overline{a}
 \end{align*}
 
-\item [{d)}] \begin{align*}
+\subparagraph{Apartat D} \begin{align*}
   a \left(b \oplus c\right) &= ab \oplus ac \\
   a \left[ \left(b + c\right)\overline{\left(b \cdot c\right)} \right] &= \left(ab + ac\right)\overline{\left(ab \cdot ac\right)} \\
   a \left(b + c\right)\overline{\left(b \cdot c\right)} &= a \left(b + c\right)\overline{\left(a \cdot bc\right)} \\
@@ -64,7 +66,7 @@ Per demostrar les igualtats, prenem com a definició: $a \oplus b = \left(a + b\
   a \left(b + c\right)\overline{\left(b \cdot c\right)} &= \left(b + c\right) a \overline{\left(b \cdot c\right)}
 \end{align*}
 
-\item [{e)}] Podem demostrar que $a \oplus b = c \Rightarrow a \oplus c = b$ perquè si substituim la segona expressió en la primera, en resulta la identitat:
+\subparagraph{Apartat E} Podem demostrar que $a \oplus b = c \Rightarrow a \oplus c = b$ perquè si substituim la segona expressió en la primera, en resulta la identitat:
 
 \begin{align*}
   c &= a \oplus \left(a \oplus c\right) \\
@@ -83,7 +85,6 @@ Per demostrar les igualtats, prenem com a definició: $a \oplus b = \left(a + b\
 \end{align*}
 
 No és necessari demostrar les altres 5 relacions gràcies a la simetria.
-\end{description}
 
 \end{minipage}
 
@@ -92,31 +93,29 @@ No és necessari demostrar les altres 5 relacions gràcies a la simetria.
 
 \paragraph{Problema 1.2}
 
-\begin{description}
-
-\item[{a)}] \begin{align*}
+\subparagraph{Apartat A} \begin{align*}
   a + b + c + abc &= a + b + c \\
   a + b + c\left(1 + ab\right) &= a + b + c \\
   a + b + c \cdot 1 &= a + b + c
 \end{align*}
 
-\item[{b)}] \begin{align*}
+\subparagraph{Apartat B} \begin{align*}
   a + b + c + \overline{\left(abc\right)} &= 1 \\
   a + b + c + \overline{a} + \overline{b} + \overline{c} &= 1 \,\, \text{(veure \emph{c})}
 \end{align*}
 
-\item[{c)}] \begin{align*}
+\subparagraph{Apartat C} \begin{align*}
   a + b + c + \overline{a} + \overline{b} + \overline{c} &= 1 \\
   \left(a + \overline{a}\right) + b + c + \overline{b} + \overline{c} &= 1 \\
   1 + \left(b + c + \overline{b} + \overline{c}\right) &= 1
 \end{align*}
 
-\item[{d)}] \begin{align*}
+\subparagraph{Apartat D} \begin{align*}
   ab\left(c + cd\right) + \left(ac + a\right)bd &= ab\left(c + d\right) \\
   abc\left(1 + d\right) + a\left(c + 1\right)bd &= abc + abd
 \end{align*}
 
-\item[{e)}] \begin{align*}
+\subparagraph{Apartat E} \begin{align*}
   a\left(\overline{c} + ad\right) + c\overline{d} + ad\overline{a} &= a + c\overline{d} \\
   a\overline{c} + ad + c\overline{d} + 0 &= a + c\overline{d} \\
   a\left(\overline{c} + d\right) + c\overline{d} &= a + c\overline{d} \\
@@ -124,7 +123,7 @@ No és necessari demostrar les altres 5 relacions gràcies a la simetria.
   a + \left(c\overline{d}\right) &= a + c\overline{d}
 \end{align*}
 
-\item[{f)}] \begin{align*}
+\subparagraph{Apartat F} \begin{align*}
   \left(ab + c + d\right)\left(c + \overline{d}\right)\left(\left(c + \overline{d}\right) + a\right) &= ab\overline{d} + c \\
   \left(ab + c + d\right)\left(\left(c + \overline{d}\right)\left(c + \overline{d}\right) + \left(c + \overline{d}\right)a\right) &= ab\overline{d} + c \\
   \left(ab + c + d\right)\left(c + \overline{d}\right)\left(1 + a\right) &= ab\overline{d} + c \\
@@ -134,8 +133,6 @@ No és necessari demostrar les altres 5 relacions gràcies a la simetria.
   ab\overline{d} + abc + c + dc + c\overline{d} + 0 &= ab\overline{d} + c \\
   ab\overline{d} + c\left(ab + 1 + d + \overline{d}\right) &= ab\overline{d} + c
 \end{align*}
-
-\end{description}
 
 \end{minipage}
 
@@ -184,19 +181,25 @@ en invertir la representació d'un valor s'obté la representació del valor com
 
 \paragraph{Problema 1.11}
 
-\begin{description}
-\item[{a)}] Sí, es un codi redundant perquè permet la detecció d'errors.
+\subparagraph{Apartat A}
 
-\item[{b)}] La distància mínima és $2$, ja que es veu a simple vista que (a) no hi
+Sí, es un codi redundant perquè permet la detecció d'errors.
+
+\subparagraph{Apartat B}
+
+La distància mínima és $2$, ja que es veu a simple vista que (a) no hi
 ha cap parella d'items que difereixin en només 1 bit, i (b) es pot trobar fàcilment
 un cas on variant 2 bits s'obté una altra representació del codi.
 
-\item[{c)}] No permet la correcció d'errors.
+\subparagraph{Apartat C}
 
-\item[{d)}] No estic segur d'això, però la distància mínima continuaria essent $2$
+No permet la correcció d'errors.
+
+\subparagraph{Apartat D}
+
+No estic segur d'això, però la distància mínima continuaria essent $2$
 perquè es pot trobar fàcilment un cas on variant 2 bits s'obté una altra representació
-del codi protegit. Exemple: $00011\,0 \rightarrow 00111\,0 \rightarrow 00101\,0$
-\end{description}
+vàlida del codi protegit. Exemple: $00011\,0 \rightarrow 00111\,0 \rightarrow 00101\,0$
 
 \end{minipage}
 

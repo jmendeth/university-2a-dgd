@@ -14,9 +14,10 @@
 
 % ADD ANY SPECIFIC PACKAGES HERE
 % (CHEMISTRY, CODE, PUBLISHING)
+\usepackage{mathtools}
 \usepackage{circuitikz}
 \usetikzlibrary{circuits.logic.US,circuits.logic.IEC}
-\usepackage{amsmath}
+\usetikzlibrary{calc}
 
 % other options
 
@@ -24,7 +25,7 @@
 \usepackage{hyperref}
 \AfterPreamble{\hypersetup{
   pdfauthor={Xavier Mendez},
-  pdftitle={Simplificació mitjançant Karnaugh},
+  pdftitle={T3. Simplificació mitjançant Karnaugh},
   pdfsubject={DGD},
 }}
 
@@ -140,7 +141,7 @@ El logigrama quedaria així:
 
 \end{circuitikz} \end{center}
 
-Passada a forma NAND de NANDs, l'expressió queda:
+Passada a forma \textsf{NAND} de \textsf{NAND}s, l'expressió queda:
 
 \begin{equation*}
   f(d,c,b,a) = \overline{
@@ -224,10 +225,10 @@ L'expressió simplificada en PdS quedaria:
 S'implementaria amb les portes següents:
 
 \begin{center} \begin{tabular}{rl}
-3 & NOT \\
-1 & OR2 \\
-1 & OR3 \\
-1 & AND3 \\
+3 & \textsf{NOT} \\
+1 & \textsf{OR2} \\
+1 & \textsf{OR3} \\
+1 & \textsf{AND3} \\
 \end{tabular} \end{center}
 
 El logigrama quedaria així:
@@ -288,7 +289,7 @@ El logigrama quedaria així:
 
 \end{circuitikz} \end{center}
 
-Passada a forma NOR de NORs, l'expressió queda:
+Passada a forma \textsf{NOR} de \textsf{NOR}s, l'expressió queda:
 
 \begin{equation*}
   f(d,c,b,a) = \overline{
