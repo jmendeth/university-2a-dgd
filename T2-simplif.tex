@@ -75,21 +75,27 @@ Simplifiquem:
 Fent el logigrama, resulta:
 
 \begin{center} \begin{circuitikz}[scale=1] \draw
-  (4,3) node[and port](and1){}
-  (1.7,0) node[not port](c_not){}
-  (4,1) node[and port](and2){}
-  (6,2) node[or port](or){}
+  (0,2) coordinate (a) node[anchor=east] {$a$}
+  (0,1) coordinate (b) node[anchor=east] {$b$}
+  (0,0) coordinate (c) node[anchor=east] {$c$}
 
-  (0,4) node[anchor=east]{$a$} -| (and1.in 1)
-  (0,2) node[anchor=east]{$b$} -| (and2.in 1)
-  (0,0) node[anchor=east]{$c$} -| (c_not.in)
-  (c_not.out) -| (and2.in 2)
-  (0,0) to[short, -*] ++(0.6,0) |- (and1.in 2)
+  (0.7,0) node[not gate US, draw] (c_not) {}
+  (2,1.5) node[and gate US, draw, logic gate inputs=nn] (and1) {}
+  (2,0.5) node[and gate US, draw, logic gate inputs=nn] (and2) {}
+  (3.2,1) node[or gate US, draw, logic gate inputs=nn] (or) {}
 
-  (and1.out) -| (or.in 1)
-  (and2.out) -| (or.in 2)
-  (or.out) -- (7,2) node[anchor=west]{$f$}
+  (c_not.input) -- (c)
+  (c) to[open, -*] ++(0.3,0) coordinate (c_yes)
 
+  (and1.input 1) -- ++(-.2,0) |- (a)
+  (and2.input 1) -- ++(-.2,0) |- (b)
+  (and1.input 2) -- ++(-.2,0) -| (c_yes)
+  (and2.input 2) -- ++(-.2,0) |- (c_not.output)
+
+  (or.input 1) -- ++(-.2,0) |- (and1.output)
+  (or.input 2) -- ++(-.2,0) |- (and2.output)
+
+  (or.output) -- ++(.5,0) node[anchor=west] {$f$}
 ; \end{circuitikz} \end{center}
 
 Per comprovar que el comportament és equivalent a l'enunciat,
