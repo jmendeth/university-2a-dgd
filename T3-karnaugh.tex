@@ -20,6 +20,8 @@
 \usetikzlibrary{calc}
 
 % other options
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{6}
 
 % hyperlink setup / metadata
 \usepackage{hyperref}
@@ -63,7 +65,7 @@ Fem el mapa de Karnaugh:
 \end{tabular} \end{center}
 
 
-\section*{Suma de productes}
+\subsubsection{Suma de productes}
 
 L'expressió simplificada en SdP quedaria:
 
@@ -74,9 +76,9 @@ L'expressió simplificada en SdP quedaria:
 S'implementaria amb les portes següents:
 
 \begin{center} \begin{tabular}{rl}
-3 & NOT \\
-3 & AND3 \\
-1 & OR3 \\
+3 & \textsf{NOT} \\
+3 & \textsf{AND3} \\
+1 & \textsf{OR3} \\
 \end{tabular} \end{center}
 
 El logigrama quedaria així:
@@ -214,7 +216,7 @@ El logigrama resultant és:
 \end{circuitikz} \end{center}
 
 
-\section*{Producte de sumes}
+\subsubsection{Producte de sumes}
 
 L'expressió simplificada en PdS quedaria:
 
