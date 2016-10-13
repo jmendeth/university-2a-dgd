@@ -30,7 +30,6 @@
 }}
 
 \begin{document}
-\setlength{\parskip}{0pt}
 
 \begin{minipage}{30em}
 
@@ -41,7 +40,7 @@
 
 \subparagraph{Apartat A}
 
-Escribim la taula de veritat de $Y_0$:
+Escrivim la taula de veritat de $Y_0$:
 
 \begin{center} \begin{tabular}{cc}
 $x_3x_2x_1x_0$ & $Y_0$ \\
@@ -89,7 +88,7 @@ Construïm el mapa de Karnaugh:
 10 &  0 &  1 &  1 &  1
 \end{tabular} \end{center}
 
-Escribim l'expressió mínima en PdS:
+Escrivim l'expressió mínima en PdS:
 %
 \begin{equation*}
   Y_0(x_3,x_2,x_1,x_0) =
@@ -173,7 +172,7 @@ El logigrama quedaria així:
 
 \subparagraph{Apartat C}
 
-Escribim la taula de veritat de $Y_1$, junt amb la de $Y_0$ que hem escrit a dalt:
+Escrivim la taula de veritat de $Y_1$, junt amb la de $Y_0$ que hem escrit a dalt:
 
 \begin{center} \begin{tabular}{ccc}
 $x_3x_2x_1x_0$ & $Y_0$ & $Y_1$ \\
@@ -214,7 +213,7 @@ Fem el mapa de Karnaugh basant-nos en la taula de veritat de l'apartat B:
 10 &  1 &  1 &  1 &  1
 \end{tabular} \end{center}
 
-Escribim una expressió simplificada en SdP:
+Escrivim una expressió simplificada en SdP:
 %
 \begin{equation*}
   Y_1(x_3,x_2,x_1,x_0) = x_3x_0 + x_2x_1x_0 + \overline{x_2}\overline{x_0}
@@ -289,6 +288,117 @@ El logigrama quedaria així:
 ;
 
 \end{circuitikz} \end{center}
+
+\end{minipage}
+
+
+\begin{minipage}{30em}
+
+\paragraph{Problema 2.8} \hspace{0em}
+
+\subparagraph{Apartat A}
+
+Mentalment transformem el logigrama a \textsf{AND} de \textsf{OR}s i escrivim les sortides del primer nivell de portes, que enumerarem de dalt a baix:
+%
+\begin{align*}
+  t_0 &= s + \overline{x_1} \\
+  t_1 &= x_1 + x_0 \\
+  t_2 &= s + x_1 \\
+  t_3 &= \overline{s} + \overline{x_1} + \overline{x_0} \\
+  t_4 &= \overline{x_1} + x_0
+\end{align*}
+
+Escrivim les expressions de $z_2$, $z_1$ i $z_0$ en funció de les sortides de dalt:
+%
+\begin{align*}
+  z_2 &= t_0 t_1 t_2 \\
+  z_1 &= t_1 t_2 t_3 \\
+  z_0 &= t_1 t_4
+\end{align*}
+
+Escrivim la taula de veritat de $z_2$, $z_1$ i $z_0$:
+
+\begin{center} \begin{tabular}{cccc}
+$sx_1x_0$ & $z_2$ & $z_1$ & $z_0$ \\
+\hline
+000 & 0 & 0 & 0 \\
+001 & 0 & 0 & 1 \\
+010 & 0 & 1 & 0 \\
+011 & 0 & 1 & 1 \\
+100 & 0 & 0 & 0 \\
+101 & 1 & 1 & 1 \\
+110 & 1 & 1 & 0 \\
+111 & 1 & 0 & 1
+\end{tabular} \end{center}
+
+Escrivim els mapes de Karnaugh per a $z_2$...
+
+\begin{center} \begin{tabular}{lcccc}
+\hspace{-.7em} \tikz[baseline=.1em]{\node at (.5em,.5em) {$x_1x_0$}; \node at (-.5em,-.5em) {$s$}; \draw (1em,-1em) -- (-1em,1em);}
+  & 00 & 01 & 11 & 10 \\
+0 &  0 &  0 &  0 &  0 \\
+1 &  0 &  1 &  1 &  1 \\
+\end{tabular} \end{center}
+
+Per a $z_1$...
+
+\begin{center} \begin{tabular}{lcccc}
+\hspace{-.7em} \tikz[baseline=.1em]{\node at (.5em,.5em) {$x_1x_0$}; \node at (-.5em,-.5em) {$s$}; \draw (1em,-1em) -- (-1em,1em);}
+  & 00 & 01 & 11 & 10 \\
+0 &  0 &  0 &  1 &  1 \\
+1 &  0 &  1 &  0 &  1 \\
+\end{tabular} \end{center}
+
+Per a $z_0$...
+
+\begin{center} \begin{tabular}{lcccc}
+\hspace{-.7em} \tikz[baseline=.1em]{\node at (.5em,.5em) {$x_1x_0$}; \node at (-.5em,-.5em) {$s$}; \draw (1em,-1em) -- (-1em,1em);}
+  & 00 & 01 & 11 & 10 \\
+0 &  0 &  1 &  1 &  0 \\
+1 &  0 &  1 &  1 &  0 \\
+\end{tabular} \end{center}
+
+Escrivim les expressions simplificades en PdS:
+%
+\begin{align*}
+  z_2 &= \left(x_1 + x_0\right) s \\
+  z_1 &= \left(x_1 + x_0\right) \left(s + x_1\right) \left(\overline{s} + \overline{x_1} + \overline{x_0}\right) \\
+  z_0 &= x_0
+\end{align*}
+
+
+\subparagraph{Apartat B}
+
+Escrivim les expressions simplificades ara en SdP:
+%
+\begin{align*}
+  z_2 &= s \overline{x_1} x_0 + s x_1 \\
+  z_1 &= s \overline{x_1} x_0 + \overline{s} x_1 + x_1 \overline{x_0} \\
+  z_0 &= x_0
+\end{align*}
+
+Fixem-nos que, tot i que existeixen expressions més simples individualment per a $z_2$, la que hem fet servir ens beneficia perquè reutilitza productes de $z_1$, reduïnt el nombre de portes lògiques necessàries.
+
+Ara, apliquem Morgan a les sumes per convertir les expressions en \textsf{NAND} de \textsf{NAND}s (fent simplificacions trivials tipus $\overline{\overline{x}} = x$):
+%
+\begin{align*}
+  z_2 &= \overline{
+    \overline{\left(s \overline{x_1} x_0\right)} \cdot
+    \overline{\left(s x_1\right)}
+  } \\
+  z_1 &= \overline{
+    \overline{\left(s \overline{x_1} x_0\right)} \cdot
+    \overline{\left(\overline{s} x_1\right)} \cdot
+    \overline{\left(x_1 \overline{x_0}\right)}
+  } \\
+  z_0 &= x_0
+\end{align*}
+
+Ara, comptem que hi ha 4 productes negats únics en el primer nivell, i 2 en el nivell superior. El nombre de portes \textsf{NAND} mínimes per implementar-les, sense comptar la implementació dels negats, seria \textbf{6}.
+
+
+\subparagraph{Apartat C}
+
 
 
 \end{minipage}
