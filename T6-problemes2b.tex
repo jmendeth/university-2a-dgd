@@ -1,0 +1,296 @@
+\documentclass[catalan,border=15pt,class=scrartcl,multi=minipage]{standalone}
+
+% encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{babel}
+
+% formatting and fixes
+\frenchspacing
+\usepackage[style=spanish]{csquotes}
+\MakeAutoQuote{«}{»}
+
+% ADD ANY SPECIFIC PACKAGES HERE
+% (CHEMISTRY, CODE, PUBLISHING)
+\usepackage{mathtools}
+\usepackage{circuitikz}
+\usetikzlibrary{circuits.logic.US,circuits.logic.IEC}
+\usetikzlibrary{calc}
+
+% other options
+\setcounter{tocdepth}{6}
+
+% hyperlink setup / metadata
+\usepackage{hyperref}
+\AfterPreamble{\hypersetup{
+  pdfauthor={Xavier Mendez},
+  pdftitle={T6. Problemes tema 2 (II)},
+  pdfsubject={DGD},
+}}
+
+\begin{document}
+\setlength{\parskip}{0pt}
+
+\begin{minipage}{30em}
+
+\paragraph{Problema 2.7} \hspace{0em}
+
+\vspace{1em}
+
+
+\subparagraph{Apartat A}
+
+Escribim la taula de veritat de $Y_0$:
+
+\begin{center} \begin{tabular}{cc}
+$x_3x_2x_1x_0$ & $Y_0$ \\
+\hline
+0000 & 1 \\
+0001 & 1 \\
+0010 & 1 \\
+0011 & 1 \\
+0100 & 0 \\
+0101 & 0 \\
+0110 & 1 \\
+0111 & 1 \\
+1000 & 0 \\
+1001 & 1 \\
+1010 & 1 \\
+1011 & 1 \\
+1100 & 0 \\
+1101 & 1 \\
+1110 & 0 \\
+1111 & 1
+\end{tabular} \end{center}
+
+La forma canònica en PdS es troba fent producte dels 5 maxterms que apareixen a la taula de veritat:
+%
+\begin{align*}
+  Y_0(x_3,x_2,x_1,x_0) =&
+    \left( x_3 + \overline{x_2} + x_1 + x_0 \right) \\ \cdot&
+    \left( x_3 + \overline{x_2} + x_1 + \overline{x_0} \right) \\ \cdot&
+    \left( \overline{x_3} + x_2 + x_1 + x_0 \right) \\ \cdot&
+    \left( \overline{x_3} + \overline{x_2} + x_1 + x_0 \right) \\ \cdot&
+    \left( \overline{x_3} + \overline{x_2} + \overline{x_1} + x_0 \right)
+\end{align*}
+
+
+\subparagraph{Apartat B}
+
+Construïm el mapa de Karnaugh:
+
+\begin{center} \begin{tabular}{ccccc}
+\hspace{.2em} \tikz[baseline=.5em]{\node at (.8em,.8em) {$x_1x_0$}; \node at (-.8em,-.8em) {$x_3x_2$}; \draw (1em,-1em) -- (-1em,1em);}
+   & 00 & 01 & 11 & 10 \\
+00 &  1 &  1 &  1 &  1 \\
+01 &  0 &  0 &  1 &  1 \\
+11 &  0 &  1 &  1 &  0 \\
+10 &  0 &  1 &  1 &  1
+\end{tabular} \end{center}
+
+Escribim l'expressió mínima en PdS:
+%
+\begin{equation*}
+  Y_0(x_3,x_2,x_1,x_0) =
+    \left( x_3 + \overline{x_2} + x_1 \right)
+    \left( \overline{x_3} + \overline{x_2} + x_0 \right)
+    \left( \overline{x_3} + x_1 + x_0 \right)
+\end{equation*}
+
+Apliquem Morgan al producte per obtenir la expressió amb \textsf{NOR} de \textsf{NOR}s:
+%
+\begin{equation*}
+  Y_0(x_3,x_2,x_1,x_0) = \overline{
+    \overline{x_3 + \overline{x_2} + x_1} +
+    \overline{\overline{x_3} + \overline{x_2} + x_0} +
+    \overline{\overline{x_3} + x_1 + x_0}
+  }
+\end{equation*}
+
+El logigrama quedaria així:
+
+\begin{center} \begin{circuitikz}[scale=1] \draw
+
+(0.0,0) coordinate (d) node[anchor=south] {$x_3$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(1.2,0) coordinate (d) node[anchor=south] {$x_2$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(2.4,0) coordinate (d) node[anchor=south] {$x_1$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(3.6,0) coordinate (d) node[anchor=south] {$x_0$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+;
+
+\node at (5,-2) [nor gate US, draw, logic gate inputs=nnn] (and1) {};
+\foreach \a in {1,...,3}
+  \draw (and1.input \a -| -0.5,0) -- (and1.input \a);
+
+\node at (5,-3) [nor gate US, draw, logic gate inputs=nnn] (and2) {};
+\foreach \a in {1,...,3}
+  \draw (and2.input \a -| -0.5,0) -- (and2.input \a);
+
+\node at (5,-4) [nor gate US, draw, logic gate inputs=nnn] (and3) {};
+\foreach \a in {1,...,3}
+  \draw (and3.input \a -| -0.5,0) -- (and3.input \a);
+
+\draw
+  (6.4,-3) node[nor gate US, draw, logic gate inputs=nnn] (or) {}
+  (or.input 1) -- ++(-0.2,0) |- (and1.output)
+  (or.input 2) -- ++(-0.2,0) |- (and2.output)
+  (or.input 3) -- ++(-0.2,0) |- (and3.output)
+  (or.output) -- ++(0.5,0) node[anchor=west] {$Y_0$}
+;
+
+\draw
+  (and1.input 1 -| 0.0,0)          node[circ] {}
+  (and1.input 2 -| 1.2,0) ++(.5,0) node[circ] {}
+  (and1.input 3 -| 2.4,0)          node[circ] {}
+
+  (and2.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
+  (and2.input 2 -| 1.2,0) ++(.5,0) node[circ] {}
+  (and2.input 3 -| 3.6,0)          node[circ] {}
+
+  (and3.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
+  (and3.input 2 -| 2.4,0)          node[circ] {}
+  (and3.input 3 -| 3.6,0)          node[circ] {}
+;
+
+\end{circuitikz} \end{center}
+
+
+\subparagraph{Apartat C}
+
+Escribim la taula de veritat de $Y_1$, junt amb la de $Y_0$ que hem escrit a dalt:
+
+\begin{center} \begin{tabular}{ccc}
+$x_3x_2x_1x_0$ & $Y_0$ & $Y_1$ \\
+\hline
+0000 & 1 & 1 \\
+0001 & 1 & 0 \\
+0010 & 1 & 1 \\
+0011 & 1 & 0 \\
+0100 & 0 & 0 \\
+0101 & 0 & 0 \\
+0110 & 1 & 0 \\
+0111 & 1 & 1 \\
+1000 & 0 & 1 \\
+1001 & 1 & 1 \\
+1010 & 1 & 1 \\
+1011 & 1 & 1 \\
+1100 & 0 & 0 \\
+1101 & 1 & 1 \\
+1110 & 0 & 0 \\
+1111 & 1 & 1 \\
+\end{tabular} \end{center}
+
+D'acord amb això, les entrades $\left(0,0,0,1\right)$, $\left(0,0,1,1\right)$,
+$\left(0,1,1,0\right)$ i $\left(1,0,0,0\right)$ han de ser inespecificacions ja
+que tenen sortides diferents en les implementacions $Y_0$ i $Y_1$.
+
+
+\subparagraph{Apartat D}
+
+Fem el mapa de Karnaugh basant-nos en la taula de veritat de l'apartat B:
+
+\begin{center} \begin{tabular}{ccccc}
+\hspace{.2em} \tikz[baseline=.5em]{\node at (.8em,.8em) {$x_1x_0$}; \node at (-.8em,-.8em) {$x_3x_2$}; \draw (1em,-1em) -- (-1em,1em);}
+   & 00 & 01 & 11 & 10 \\
+00 &  1 &  0 &  0 &  1 \\
+01 &  0 &  0 &  1 &  0 \\
+11 &  0 &  1 &  1 &  0 \\
+10 &  1 &  1 &  1 &  1
+\end{tabular} \end{center}
+
+Escribim una expressió simplificada en SdP:
+%
+\begin{equation*}
+  Y_1(x_3,x_2,x_1,x_0) = x_3x_0 + x_2x_1x_0 + \overline{x_2}\overline{x_0}
+\end{equation*}
+
+Apliquem Morgan a la suma per convertir l'expressió en \textsf{NAND} de \textsf{NAND}s, i repetim factors en alguns productes per tal de tenir sempre 3 entrades:
+%
+\begin{equation*}
+  Y_1(x_3,x_2,x_1,x_0) = \overline{x_3 \cdot x_0 \cdot x_0}
+    + \overline{x_2 \cdot x_1 \cdot x_0}
+    + \overline{\overline{x_2} \cdot \overline{x_0} \cdot \overline{x_0}}
+\end{equation*}
+
+El logigrama quedaria així:
+
+\begin{center} \begin{circuitikz}[scale=1] \draw
+
+(0.0,0) coordinate (d) node[anchor=south] {$x_3$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(1.2,0) coordinate (d) node[anchor=south] {$x_2$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(2.4,0) coordinate (d) node[anchor=south] {$x_1$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+(3.6,0) coordinate (d) node[anchor=south] {$x_0$} (d) -- ++(0,-5)
+(d) ++(.5, -1) node[not gate US, draw, rotate=-90] (d_not) {}
+(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d) ++(.5,-5) -- (d_not.output)
+
+;
+
+\node at (5,-2) [nand gate US, draw, logic gate inputs=nnn] (and1) {};
+\foreach \a in {1,...,3}
+  \draw (and1.input \a -| -0.5,0) -- (and1.input \a);
+
+\node at (5,-3) [nand gate US, draw, logic gate inputs=nnn] (and2) {};
+\foreach \a in {1,...,3}
+  \draw (and2.input \a -| -0.5,0) -- (and2.input \a);
+
+\node at (5,-4) [nand gate US, draw, logic gate inputs=nnn] (and3) {};
+\foreach \a in {1,...,3}
+  \draw (and3.input \a -| -0.5,0) -- (and3.input \a);
+
+\draw
+  (6.4,-3) node[nand gate US, draw, logic gate inputs=nnn] (or) {}
+  (or.input 1) -- ++(-0.2,0) |- (and1.output)
+  (or.input 2) -- ++(-0.2,0) |- (and2.output)
+  (or.input 3) -- ++(-0.2,0) |- (and3.output)
+  (or.output) -- ++(0.5,0) node[anchor=west] {$Y_1$}
+;
+
+\draw
+  (and1.input 1 -| 0.0,0)          node[circ] {}
+  (and1.input 2 -| 3.6,0)          node[circ] {}
+  (and1.input 3 -| 3.6,0)          node[circ] {}
+
+  (and2.input 1 -| 1.2,0)          node[circ] {}
+  (and2.input 2 -| 2.4,0)          node[circ] {}
+  (and2.input 3 -| 3.6,0)          node[circ] {}
+
+  (and3.input 1 -| 1.2,0) ++(.5,0) node[circ] {}
+  (and3.input 2 -| 3.6,0) ++(.5,0) node[circ] {}
+  (and3.input 3 -| 3.6,0) ++(.5,0) node[circ] {}
+;
+
+\end{circuitikz} \end{center}
+
+
+\end{minipage}
+
+\end{document}
