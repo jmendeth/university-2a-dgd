@@ -37,7 +37,11 @@
 
 \paragraph{Problema 1.1}
 
-Per demostrar les igualtats, prenem com a definició: $a \oplus b = \left(a + b\right)\overline{\left(a \cdot b\right)}$.
+Per demostrar les igualtats, prenem com a definició:
+%
+\begin{equation*}
+  a \oplus b = \left(a + b\right)\overline{\left(a \cdot b\right)}
+\end{equation*}
 
 \subparagraph{Apartat A} \begin{align*}
   a \oplus b &= \overline{a} \oplus \overline{b} \\
@@ -67,7 +71,7 @@ Per demostrar les igualtats, prenem com a definició: $a \oplus b = \left(a + b\
 \end{align*}
 
 \subparagraph{Apartat E} Podem demostrar que $a \oplus b = c \Rightarrow a \oplus c = b$ perquè si substituim la segona expressió en la primera, en resulta la identitat:
-
+%
 \begin{align*}
   c &= a \oplus \left(a \oplus c\right) \\
   c &= \begin{cases}
@@ -144,7 +148,7 @@ No és necessari demostrar les altres 5 relacions gràcies a la simetria.
 El codi de la taula és \emph{ponderat} perquè és possible assignar un pes a cada bit.
 En aquest cas, es veu a simple vista que els pesos són $\left(a_3, a_2, a_1, a_0\right) = \left(2, 4, 2, 1\right)$.
 Es comprova que, efectivament, les combinacions quadren:
-
+%
 \begin{align*}
   0000 &\rightarrow 0 \cdot 2 + 0 \cdot 4 + 0 \cdot 2 + 0 \cdot 1 = 0 \\
   0001 &\rightarrow 0 \cdot 2 + 0 \cdot 4 + 0 \cdot 2 + 1 \cdot 1 = 1 \\
@@ -160,7 +164,7 @@ Es comprova que, efectivament, les combinacions quadren:
 
 De forma similar, es pot comprovar que és un codi \emph{autocomplementari} perquè
 en invertir la representació d'un valor s'obté la representació del valor complementari.
-
+%
 \begin{align*}
   0000 = 0 \, &\leftrightarrow \, 1111 = 9 \\
   0001 = 1 \, &\leftrightarrow \, 1110 = 8 \\

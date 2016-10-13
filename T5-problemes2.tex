@@ -47,7 +47,7 @@
 \subparagraph{Apartat A}
 
 Per fer-la només amb \textsf{NOT} i \textsf{OR}, manipulem l'expressió aplicant Morgan als productes...
-
+%
 \begin{equation*}
   f(a,b,c) = \overline{\overline{a} + \overline{b}} + \overline{a + b} + \overline{\overline{c} + b}
 \end{equation*}
@@ -116,7 +116,7 @@ I ja està. El logigrama queda així:
 \subparagraph{Apartat B}
 
 Per fer-la només amb \textsf{NOT} i \textsf{AND}, manipulem l'expressió aplicant Morgan a la suma...
-
+%
 \begin{equation*}
   f(a,b,c) = \overline{  \overline{a \cdot b} \cdot \overline{\overline{a} \cdot \overline{b}} \cdot \overline{c \cdot \overline{b}}  }
 \end{equation*}
@@ -186,7 +186,7 @@ I ja està. El logigrama queda així:
 
 \subparagraph{Apartat C}
 
-Una \textsf{XOR} de N entrades es comporta com una \textsf{OR} de N entrades, sempre que no hi hagi més d'una entrada que sigui 1. En la expressió donada:
+Una \textsf{XOR} de N entrades es comporta com una \textsf{OR} de N entrades, sempre que no hi hagi més d'una entrada que sigui 1. En la expressió donada...
 
 \begin{itemize}
 \item El producte $ab$ només es 1 per a les entrades $\left(1,1,0\right)$, $\left(1,1,1\right)$.
@@ -195,19 +195,19 @@ Una \textsf{XOR} de N entrades es comporta com una \textsf{OR} de N entrades, se
 \end{itemize}
 
 L'entrada $\left(0,0,1\right)$ causa dos 1, però si restringim un dels productes:
-
+%
 \begin{equation*}
   f(a,b,c) = a \cdot b + \overline{a} \cdot \overline{b} + a \cdot c \cdot \overline{b}
 \end{equation*}
 
 Aquesta expressió és equivalent, però ara es compleix que, per a totes les entrades de $f$, no hi haurà més d'un producte que evaluï a 1. Per tant, la suma es pot canviar a \textsf{XOR} sense alterar la funció:
-
+%
 \begin{equation*}
   f(a,b,c) = a \cdot b \oplus \overline{a} \cdot \overline{b} \oplus a \cdot c \cdot \overline{b}
 \end{equation*}
 
 Ara només queda canviar els negats per $\left(x \oplus 1\right)$:
-
+%
 \begin{equation*}
   f(a,b,c) = a b \oplus \left(a \oplus 1\right) \left(b \oplus 1\right) \oplus a c \left(b \oplus 1\right)
 \end{equation*}
@@ -316,13 +316,13 @@ Fent simplificació en SdP amb Karnaugh:
 \end{tabular} \end{center}
 
 L'expressió simplificada en SdP:
-
+%
 \begin{equation*}
   f(a,b,c) = \overline{a}b + \overline{a}c + bc + a\overline{b}\overline{c}
 \end{equation*}
 
 S'aplica Morgan a la suma exterior per convertir l'expressió en \textsf{NAND} de \textsf{NAND}s:
-
+%
 \begin{equation*}
   f(a,b,c) = \overline{
     \overline{\overline{a}b} \cdot \overline{\overline{a}c} \cdot \overline{bc} \cdot \overline{a\overline{b}\overline{c}}
