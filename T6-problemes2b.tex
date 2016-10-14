@@ -399,7 +399,77 @@ Ara, comptem que hi ha 4 productes negats únics en el primer nivell, i 2 en el 
 
 \subparagraph{Apartat C}
 
+El circuit serveix per a canviar del codi d'entrada (signe -- valor absolut) a Ca2 de 3~bits.
 
+\end{minipage}
+
+
+\begin{minipage}{30em}
+
+\paragraph{Problema 2.16}
+
+Suposant que l'entrada de la funció ha sigut $(A,B)$ durant un temps suficientment llarg, es diu que hi ha hagut un espuri estàtic si, en aplicar una nova entrada $(A',B')$, s'observen \emph{dos} canvis de sortida abans d'arribar a la sortida definitiva. Aplicant la definició en la nostra xarxa, hi ha hagut espuri estàtic si i només si:
+%
+\begin{equation*}
+  \overline{AB + \overline{A+B}} \neq \overline{A'B' + \overline{A+B}}
+    \quad \text{i} \quad
+  \overline{A'B' + \overline{A+B}} \neq \overline{A'B' + \overline{A'+B'}}
+\end{equation*}
+
+Manipulem:
+%
+\begin{align*}
+  AB + \overline{A+B} \neq A'B' + \overline{A+B}
+    \quad &\text{i} \quad
+  A'B' + \overline{A+B} \neq A'B' + \overline{A'+B'}
+\\
+  AB \neq A'B'
+    \quad \text{i} \quad
+  \overline{A+B} = 0
+    \quad &\text{i} \quad
+  A'B' = 0
+    \quad \text{i} \quad
+  \overline{A+B} \neq \overline{A'+B'}
+\\
+  AB \neq 0
+    \quad \text{i} \quad
+  A+B = 1
+    \quad &\text{i} \quad
+  A'B' = 0
+    \quad \text{i} \quad
+  0 \neq \overline{A'+B'}
+\\
+  AB = 1
+    \quad \text{i} \quad
+  A+B = 1
+    \quad &\text{i} \quad
+  A'B' = 0
+    \quad \text{i} \quad
+  0 = A'+B'
+\\
+  A = 1
+    \quad \text{i} \quad
+  B = 1
+    \quad &\text{i} \quad
+  A' = 0
+    \quad \text{i} \quad
+  B' = 0
+\end{align*}
+
+Per tant, només es produïrà un espuri estàtic quan l'entrada canviï de $\left(1,1\right)$ a $\left(0,0\right)$. La resposta a l'apartat~A és \emph{no}; la resposta a l'apartat~B és \emph{sí}.
+
+\end{minipage}
+
+
+\begin{minipage}{30em}
+
+\paragraph{Problema 2.18}
+
+a
+
+% mux
+% generic block
+% bus bipole
 
 \end{minipage}
 
