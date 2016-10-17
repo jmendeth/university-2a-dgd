@@ -46,15 +46,15 @@ Simplifiquem:
 
 Fent el logigrama, resulta:
 
-\begin{center} \begin{circuitikz}[scale=1] \draw
+\begin{center} \begin{tikzpicture}[circuit logic US] \draw
   (0,2) coordinate (a) node[anchor=east] {$a$}
   (0,1) coordinate (b) node[anchor=east] {$b$}
   (0,0) coordinate (c) node[anchor=east] {$c$}
 
   (0.7,0) node[not gate US, draw] (c_not) {}
-  (2,1.5) node[and gate US, draw, logic gate inputs=nn] (and1) {}
-  (2,0.5) node[and gate US, draw, logic gate inputs=nn] (and2) {}
-  (3.2,1) node[or gate US, draw, logic gate inputs=nn] (or) {}
+  (2,1.5) node[and gate, draw, inputs=nn] (and1) {}
+  (2,0.5) node[and gate, draw, inputs=nn] (and2) {}
+  (3.2,1) node[or gate, draw, inputs=nn] (or) {}
 
   (c_not.input) -- (c)
   (c) to[open, -*] ++(0.3,0) coordinate (c_yes)
@@ -68,7 +68,7 @@ Fent el logigrama, resulta:
   (or.input 2) -- ++(-.2,0) |- (and2.output)
 
   (or.output) -- ++(.5,0) node[anchor=west] {$f$}
-; \end{circuitikz} \end{center}
+; \end{tikzpicture} \end{center}
 
 Per comprovar que el comportament és equivalent a l'enunciat,
 fem la taula de veritat i veiem que coincideix.
