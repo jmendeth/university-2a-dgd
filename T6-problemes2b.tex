@@ -488,19 +488,31 @@ En cas que $M=0$, es fa servir $X$ en comptes d'$Y$.
 
 La xarxa retorna la distància entre $A$ i $B$: $C = \left|A - B\right|$
 
-\subparagraph{Apartat C} El disseny per a \textsf{M\textsubscript{2}} és un multiplexor de 4 bits connectat apropiadament:
+\subparagraph{Apartat C} El disseny per a \textsf{M\textsubscript{2}} és un multiplexor de 2~busos de 4~bits connectat apropiadament:
 
+\vspace{1.5em} % hack for proper alignment
 \begin{center} \begin{tikzpicture}[circuit logic US]
   \node[mux, inputs=nn] at (1,1.5) (mux) {};
   \draw (mux.select) -- ++(0,-.5) node[anchor=north] {$S$};
   \draw[ultra thick, <-] (mux.input 1) -- ++(-.5,0) node[anchor=east] {$V$};
   \draw[ultra thick, <-] (mux.input 2) -- ++(-.5,0) node[anchor=east] {$W$};
-  \draw[ultra thick, ->] (mux.output) -- ++(.5,0) node[anchor=west] {$U$};
+  \draw[ultra thick] (mux.output) -- ++(.5,0) node[anchor=west] {$U$};
 \end{tikzpicture} \end{center}
 
 \subparagraph{Apartat D} Sabem que \emph{per a aquest us en concret} de \textsf{M\textsubscript{3}}, $X \ge Y$, i per tant $0 \ge Z \ge 2^4-1$.
 
 Es pot comprovar que un \emph{restador en Ca2} es comporta com un \emph{restador modular en binari natural}. I com que, per a les nostres entrades, la resta modular es comporta de la mateixa forma que la resta típica, podem fer servir un restador en Ca2 de 4 bits, sense preocupar-nos de fer cap conversió.
+
+Un restador en Ca2 es pot fer amb un negador i un sumador amb carry d'entrada 1, connectats adequadament:
+
+\vspace{1.5em} % hack for proper alignment
+\begin{center} \begin{tikzpicture}[circuit logic US]
+  \node[mux, inputs=nn] at (1,1.5) (mux) {};
+  \draw (mux.select) -- ++(0,-.5) node[anchor=north] {$S$};
+  \draw[ultra thick, <-] (mux.input 1) -- ++(-.5,0) node[anchor=east] {$V$};
+  \draw[ultra thick, <-] (mux.input 2) -- ++(-.5,0) node[anchor=east] {$W$};
+  \draw[ultra thick] (mux.output) -- ++(.5,0) node[anchor=west] {$U$};
+\end{tikzpicture} \end{center}
 
 \finishpage
 
