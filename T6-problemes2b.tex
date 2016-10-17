@@ -205,22 +205,22 @@ El logigrama quedaria així:
 \begin{center} \begin{tikzpicture}[circuit logic US] \draw
 
 (0.0,0) coordinate (d) node[anchor=south] {$x_3$} (d) -- ++(0,-5)
-(d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
+(d) ++(.5, -1) node[not gate US, point down] (d_not) {}
 (d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
 (d) ++(.5,-5) -- (d_not.output)
 
 (1.2,0) coordinate (d) node[anchor=south] {$x_2$} (d) -- ++(0,-5)
-(d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
+(d) ++(.5, -1) node[not gate US, point down] (d_not) {}
 (d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
 (d) ++(.5,-5) -- (d_not.output)
 
 (2.4,0) coordinate (d) node[anchor=south] {$x_1$} (d) -- ++(0,-5)
-(d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
+(d) ++(.5, -1) node[not gate US, point down] (d_not) {}
 (d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
 (d) ++(.5,-5) -- (d_not.output)
 
 (3.6,0) coordinate (d) node[anchor=south] {$x_0$} (d) -- ++(0,-5)
-(d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
+(d) ++(.5, -1) node[not gate US, point down] (d_not) {}
 (d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
 (d) ++(.5,-5) -- (d_not.output)
 
@@ -270,6 +270,7 @@ El logigrama quedaria així:
 
 \subparagraph{Apartat A}
 
+% TODO: remove draw and circ/short
 Mentalment transformem el logigrama a \textsf{AND} de \textsf{OR}s i escrivim les sortides del primer nivell de portes, que enumerarem de dalt a baix:
 %
 \begin{align*}
@@ -433,13 +434,73 @@ Per tant, només es produïrà un espuri estàtic quan l'entrada canviï de $\le
 
 
 \page
-\paragraph{Problema 2.18}
+\paragraph{Problema 2.18} Visualment es prepara el següent anàlisi modular:
 
-a
+\vspace{1.3em} % hack for proper alignment
+\begin{center} \begin{tikzpicture}[circuit logic US]
+  \node[mux, inputs=nn] at (1,1.5) (mux) {};
+  \draw
+    (0,0) node[or gate, inputs=nnn] (m_or) {}
+    (m_or.input 1) -- ++(-.2,0) |- ++(-.3,.2) node[anchor=east] {$m_0$}
+    (m_or.input 2) -- ++(-.5,0) node[anchor=east] {$m_1$}
+    (m_or.input 3) -- ++(-.2,0) |- ++(-.3,-.2) node[anchor=east] {$m_2$}
+  ;
+  \draw (m_or.output) -| (mux.select);
+  \draw[ultra thick, <-] (mux.input 1) -- ++(-.5,0) node[anchor=east] {$X$};
+  \draw[ultra thick, <-] (mux.input 2) -- ++(-.5,0) node[anchor=east] {$Y$};
 
-% mux
-% generic block
-% bus bipole
+  \node[rectangle, minimum height=1cm, minimum width=1cm, draw] at (2.8,1.5) (xb) {\textsf{TM}};
+  \draw[ultra thick, ->] (mux.output) -- (xb);
+  \node[anchor=south] at ($(mux.output)!.5!(xb)$) {$T$};
+  \draw[ultra thick] (xb) -- ++(1,0) node[anchor=west] {$Z$};
+\end{tikzpicture} \end{center}
+
+Ara només queda analitzar el bloc \textsf{TM} i hauriem de ser capaços de donar una especificació en alt nivell de la funció del circuit. Escrivim la taula de veritat de \textsf{TM}:
+
+\begin{center} \begin{tabular}{cc}
+$t_2t_1t_0$ & $z_2z_1z_0$ \\
+\hline
+000 & 001 \\
+001 & 010 \\
+010 & 011 \\
+011 & 100 \\
+100 & 101 \\
+101 & 110 \\
+110 & 111 \\
+111 & 100
+\end{tabular} \end{center}
+
+Segons aquesta taula de veritat, sembla que \textsf{TM} suma $1$ a l'entrada, en binari natural, però quan l'entrada és $7$ retorna $4$ i no $0$ (possible inespecificació?). Una especificació en alt nivell seria:
+
+\begin{displayquote}
+La xarxa suma 1 a $Y$ i retorna el resultat. Excepcionalment, si $Y=7$ es retorna 4.
+
+En cas que $M=0$, es fa servir $X$ en comptes d'$Y$.
+\end{displayquote}
+
+\finishpage
+
+
+\page
+\paragraph{Problema 2.19} \hspace{0em}
+
+\subparagraph{Apartat A}
+
+La xarxa retorna la distància entre $A$ i $B$: $C = \left|A - B\right|$
+
+\subparagraph{Apartat C} El disseny per a \textsf{M\textsubscript{2}} és un multiplexor de 4 bits connectat apropiadament:
+
+\begin{center} \begin{tikzpicture}[circuit logic US]
+  \node[mux, inputs=nn] at (1,1.5) (mux) {};
+  \draw (mux.select) -- ++(0,-.5) node[anchor=north] {$S$};
+  \draw[ultra thick, <-] (mux.input 1) -- ++(-.5,0) node[anchor=east] {$V$};
+  \draw[ultra thick, <-] (mux.input 2) -- ++(-.5,0) node[anchor=east] {$W$};
+  \draw[ultra thick, ->] (mux.output) -- ++(.5,0) node[anchor=west] {$U$};
+\end{tikzpicture} \end{center}
+
+\subparagraph{Apartat D} Sabem que \emph{per a aquest us en concret} de \textsf{M\textsubscript{3}}, $X \ge Y$, i per tant $0 \ge Z \ge 2^4-1$.
+
+Es pot comprovar que un \emph{restador en Ca2} es comporta com un \emph{restador modular en binari natural}. I com que, per a les nostres entrades, la resta modular es comporta de la mateixa forma que la resta típica, podem fer servir un restador en Ca2 de 4 bits, sense preocupar-nos de fer cap conversió.
 
 \finishpage
 
