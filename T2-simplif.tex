@@ -52,9 +52,9 @@ Fent el logigrama, resulta:
   (0,0) coordinate (c) node[anchor=east] {$c$}
 
   (0.7,0) node[not gate US, draw] (c_not) {}
-  (2,1.5) node[and gate, draw, inputs=nn] (and1) {}
-  (2,0.5) node[and gate, draw, inputs=nn] (and2) {}
-  (3.2,1) node[or gate, draw, inputs=nn] (or) {}
+  (2,1.5) node[and gate, inputs=nn] (and1) {}
+  (2,0.5) node[and gate, inputs=nn] (and2) {}
+  (3.2,1) node[or gate, inputs=nn] (or) {}
 
   (c_not.input) -- (c)
   (c) to[open, -*] ++(0.3,0) coordinate (c_yes)

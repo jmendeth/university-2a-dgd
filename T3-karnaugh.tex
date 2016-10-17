@@ -78,20 +78,20 @@ El logigrama quedaria així:
 
 ;
 
-\node at (5,-2) [and gate, draw, inputs=nnn] (and1) {};
+\node at (5,-2) [and gate, inputs=nnn] (and1) {};
 \foreach \a in {1,...,3}
   \draw (and1.input \a -| -0.5,0) -- (and1.input \a);
 
-\node at (5,-3) [and gate, draw, inputs=nnn] (and2) {};
+\node at (5,-3) [and gate, inputs=nnn] (and2) {};
 \foreach \a in {1,...,3}
   \draw (and2.input \a -| -0.5,0) -- (and2.input \a);
 
-\node at (5,-4) [and gate, draw, inputs=nnn] (and3) {};
+\node at (5,-4) [and gate, inputs=nnn] (and3) {};
 \foreach \a in {1,...,3}
   \draw (and3.input \a -| -0.5,0) -- (and3.input \a);
 
 \draw
-  (6.4,-3) node[or gate, draw, inputs=nnn] (or) {}
+  (6.4,-3) node[or gate, inputs=nnn] (or) {}
   (or.input 1) -- ++(-0.2,0) |- (and1.output)
   (or.input 2) -- ++(-0.2,0) |- (and2.output)
   (or.input 3) -- ++(-0.2,0) |- (and3.output)
@@ -150,20 +150,20 @@ El logigrama resultant és:
 
 ;
 
-\node at (5,-2) [nand gate, draw, inputs=nnn] (and1) {};
+\node at (5,-2) [nand gate, inputs=nnn] (and1) {};
 \foreach \a in {1,...,3}
   \draw (and1.input \a -| -0.5,0) -- (and1.input \a);
 
-\node at (5,-3) [nand gate, draw, inputs=nnn] (and2) {};
+\node at (5,-3) [nand gate, inputs=nnn] (and2) {};
 \foreach \a in {1,...,3}
   \draw (and2.input \a -| -0.5,0) -- (and2.input \a);
 
-\node at (5,-4) [nand gate, draw, inputs=nnn] (and3) {};
+\node at (5,-4) [nand gate, inputs=nnn] (and3) {};
 \foreach \a in {1,...,3}
   \draw (and3.input \a -| -0.5,0) -- (and3.input \a);
 
 \draw
-  (6.4,-3) node[nand gate, draw, inputs=nnn] (or) {}
+  (6.4,-3) node[nand gate, inputs=nnn] (or) {}
   (or.input 1) -- ++(-0.2,0) |- (and1.output)
   (or.input 2) -- ++(-0.2,0) |- (and2.output)
   (or.input 3) -- ++(-0.2,0) |- (and3.output)
@@ -230,19 +230,19 @@ El logigrama quedaria així:
 
 ;
 
-\node at (5,-2) [or gate, draw, inputs=nn] (and1) {};
+\node at (5,-2) [or gate, inputs=nn] (and1) {};
 \foreach \a in {1,...,2}
   \draw (and1.input \a -| -0.5,0) -- (and1.input \a);
 
 \coordinate (and2) at (5,-3);
 \draw (and2 -| -0.5,0) -- (and2);
 
-\node at (5,-4) [or gate, draw, inputs=nnn] (and3) {};
+\node at (5,-4) [or gate, inputs=nnn] (and3) {};
 \foreach \a in {1,...,3}
   \draw (and3.input \a -| -0.5,0) -- (and3.input \a);
 
 \draw
-  (6.4,-3) node[and gate, draw, inputs=nnn] (or) {}
+  (6.4,-3) node[and gate, inputs=nnn] (or) {}
   (or.input 1) -- ++(-0.2,0) |- (and1.output)
   (or.input 2) -- ++(-0.2,0) |- (and2)
   (or.input 3) -- ++(-0.2,0) |- (and3.output)
@@ -298,19 +298,19 @@ El logigrama resultant és:
 
 ;
 
-\node at (5,-2) [nor gate, draw, inputs=nn] (and1) {};
+\node at (5,-2) [nor gate, inputs=nn] (and1) {};
 \foreach \a in {1,...,2}
   \draw (and1.input \a -| -0.5,0) -- (and1.input \a);
 
 \coordinate (and2) at (5,-3);
 \draw (and2 -| -0.5,0) -- (and2);
 
-\node at (5,-4) [nor gate, draw, inputs=nnn] (and3) {};
+\node at (5,-4) [nor gate, inputs=nnn] (and3) {};
 \foreach \a in {1,...,3}
   \draw (and3.input \a -| -0.5,0) -- (and3.input \a);
 
 \draw
-  (6.4,-3) node[nor gate, draw, inputs=nnn] (or) {}
+  (6.4,-3) node[nor gate, inputs=nnn] (or) {}
   (or.input 1) -- ++(-0.2,0) |- (and1.output)
   (or.input 2) -- ++(-0.2,0) |- (and2)
   (or.input 3) -- ++(-0.2,0) |- (and3.output)
