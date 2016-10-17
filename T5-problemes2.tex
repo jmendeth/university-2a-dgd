@@ -1,40 +1,11 @@
-\documentclass[catalan,border=15pt,class=scrartcl,multi=minipage]{standalone}
-
-% encoding
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{babel}
-
-% formatting and fixes
-\frenchspacing
-\usepackage[style=spanish]{csquotes}
-\MakeAutoQuote{«}{»}
-
-% ADD ANY SPECIFIC PACKAGES HERE
-% (CHEMISTRY, CODE, PUBLISHING)
-\usepackage{mathtools}
-\usepackage{circuitikz}
-\usetikzlibrary{circuits.logic.US,circuits.logic.IEC}
-\usetikzlibrary{calc}
-\newcommand{\iopair}[2]{\( \left(#1\right) \rightarrow #2 \)}
-
-% other options
-\setcounter{tocdepth}{6}
-
-% hyperlink setup / metadata
-\usepackage{hyperref}
+\input{../preamble.tex}
 \AfterPreamble{\hypersetup{
-  pdfauthor={Xavier Mendez},
   pdftitle={T5. Problemes tema 2},
-  pdfsubject={DGD},
 }}
 
 \begin{document}
-\setlength{\parskip}{7pt}
 
-\begin{minipage}{30em}
-
+\page
 \paragraph{Problema 2.2}
 
 \begin{equation*}
@@ -270,11 +241,10 @@ El logigrama queda així:
 
 \end{circuitikz} \end{center}
 
-\end{minipage}
+\finishpage
 
 
-\begin{minipage}{30em}
-
+\page
 \paragraph{Problema 2.4}
 
 Del cronograma, s'extreuen els següents parells E/S:
@@ -416,6 +386,6 @@ Ens fixem en el mapa de Karnaugh de l'apartat A. El patró «d'escacs» ens resu
 ; \end{circuitikz} \end{center}
 
 
-\end{minipage}
+\finishpage
 
 \end{document}

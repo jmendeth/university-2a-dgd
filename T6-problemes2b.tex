@@ -1,38 +1,11 @@
-\documentclass[catalan,border=15pt,class=scrartcl,multi=minipage]{standalone}
-
-% encoding
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{babel}
-
-% formatting and fixes
-\frenchspacing
-\usepackage[style=spanish]{csquotes}
-\MakeAutoQuote{«}{»}
-
-% ADD ANY SPECIFIC PACKAGES HERE
-% (CHEMISTRY, CODE, PUBLISHING)
-\usepackage{mathtools}
-\usepackage{circuitikz}
-\usetikzlibrary{circuits.logic.US,circuits.logic.IEC}
-\usetikzlibrary{calc}
-
-% other options
-\setcounter{tocdepth}{6}
-
-% hyperlink setup / metadata
-\usepackage{hyperref}
+\input{../preamble.tex}
 \AfterPreamble{\hypersetup{
-  pdfauthor={Xavier Mendez},
   pdftitle={T6. Problemes tema 2 (II)},
-  pdfsubject={DGD},
 }}
 
 \begin{document}
 
-\begin{minipage}{30em}
-
+\page
 \paragraph{Problema 2.7} \hspace{0em}
 
 \vspace{1em}
@@ -289,11 +262,10 @@ El logigrama quedaria així:
 
 \end{circuitikz} \end{center}
 
-\end{minipage}
+\finishpage
 
 
-\begin{minipage}{30em}
-
+\page
 \paragraph{Problema 2.8} \hspace{0em}
 
 \subparagraph{Apartat A}
@@ -401,11 +373,10 @@ Ara, comptem que hi ha 4 productes negats únics en el primer nivell, i 2 en el 
 
 El circuit serveix per a canviar del codi d'entrada (signe -- valor absolut) a Ca2 de 3~bits.
 
-\end{minipage}
+\finishpage
 
 
-\begin{minipage}{30em}
-
+\page
 \paragraph{Problema 2.16}
 
 Suposant que l'entrada de la funció ha sigut $(A,B)$ durant un temps suficientment llarg, es diu que hi ha hagut un espuri estàtic si, en aplicar una nova entrada $(A',B')$, s'observen \emph{dos} canvis de sortida abans d'arribar a la sortida definitiva. Aplicant la definició en la nostra xarxa, hi ha hagut espuri estàtic si i només si:
@@ -458,11 +429,10 @@ Manipulem:
 
 Per tant, només es produïrà un espuri estàtic quan l'entrada canviï de $\left(1,1\right)$ a $\left(0,0\right)$. La resposta a l'apartat~A és \emph{no}; la resposta a l'apartat~B és \emph{sí}.
 
-\end{minipage}
+\finishpage
 
 
-\begin{minipage}{30em}
-
+\page
 \paragraph{Problema 2.18}
 
 a
@@ -471,6 +441,6 @@ a
 % generic block
 % bus bipole
 
-\end{minipage}
+\finishpage
 
 \end{document}

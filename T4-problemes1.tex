@@ -1,40 +1,11 @@
-\documentclass[catalan,border=15pt,class=scrartcl,multi=minipage]{standalone}
-
-% encoding
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{babel}
-
-% formatting and fixes
-\usepackage{fixltx2e}
-\frenchspacing
-\usepackage[style=spanish]{csquotes}
-\MakeAutoQuote{«}{»}
-
-% ADD ANY SPECIFIC PACKAGES HERE
-% (CHEMISTRY, CODE, PUBLISHING)
-\usepackage{mathtools}
-\usepackage{circuitikz}
-\usetikzlibrary{circuits.logic.US,circuits.logic.IEC}
-\usetikzlibrary{calc}
-
-% other options
-\setcounter{tocdepth}{6}
-
-% hyperlink setup / metadata
-\usepackage{hyperref}
+\input{../preamble.tex}
 \AfterPreamble{\hypersetup{
-  pdfauthor={Xavier Mendez},
   pdftitle={T4. Problemes tema 1},
-  pdfsubject={DGD},
 }}
 
 \begin{document}
-\setlength{\parskip}{7pt}
 
-\begin{minipage}{30em}
-
+\page
 \paragraph{Problema 1.1}
 
 Per demostrar les igualtats, prenem com a definició:
@@ -90,11 +61,9 @@ Per demostrar les igualtats, prenem com a definició:
 
 No és necessari demostrar les altres 5 relacions gràcies a la simetria.
 
-\end{minipage}
+\finishpage
 
-
-\begin{minipage}{30em}
-
+\page
 \paragraph{Problema 1.2}
 
 \subparagraph{Apartat A} \begin{align*}
@@ -138,11 +107,10 @@ No és necessari demostrar les altres 5 relacions gràcies a la simetria.
   ab\overline{d} + c\left(ab + 1 + d + \overline{d}\right) &= ab\overline{d} + c
 \end{align*}
 
-\end{minipage}
+\finishpage
 
 
-\begin{minipage}{30em}
-
+\page
 \paragraph{Problema 1.8}
 
 El codi de la taula és \emph{ponderat} perquè és possible assignar un pes a cada bit.
@@ -178,10 +146,10 @@ en invertir la representació d'un valor s'obté la representació del valor com
   1111 = 9 \, &\leftrightarrow \, 0000 = 0
 \end{align*}
 
-\end{minipage}
+\finishpage
 
 
-\begin{minipage}{30em}
+\page
 
 \paragraph{Problema 1.11}
 
@@ -205,6 +173,6 @@ No estic segur d'això, però la distància mínima continuaria essent $2$
 perquè es pot trobar fàcilment un cas on variant 2 bits s'obté una altra representació
 vàlida del codi protegit. Exemple: $00011\,0 \rightarrow 00111\,0 \rightarrow 00101\,0$
 
-\end{minipage}
+\finishpage
 
 \end{document}

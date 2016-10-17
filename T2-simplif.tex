@@ -1,38 +1,10 @@
-\documentclass[catalan,border=15pt]{standalone}
-
-% encoding
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{babel}
-
-% formatting and fixes
-\usepackage{fixltx2e}
-\frenchspacing
-\usepackage[style=spanish]{csquotes}
-\MakeAutoQuote{«}{»}
-
-% ADD ANY SPECIFIC PACKAGES HERE
-% (CHEMISTRY, CODE, PUBLISHING)
-\usepackage{mathtools}
-\usepackage{circuitikz}
-\usetikzlibrary{circuits.logic.US,circuits.logic.IEC}
-\usetikzlibrary{calc}
-
-% other options
-
-% hyperlink setup / metadata
-\usepackage{hyperref}
+\input{../preamble.tex}
 \AfterPreamble{\hypersetup{
-  pdfauthor={Xavier Mendez},
   pdftitle={T2. Simplificació d'expressió algebraica},
-  pdfsubject={DGD},
 }}
 
 \begin{document}
-\begin{minipage}{30em}
-\setlength{\parskip}{7pt}
-
+\page
 
 La expressió algebraica escrita directament del logigrama és:
 %
@@ -115,5 +87,5 @@ $cba$ & $f$ \\
 \end{tabular} \end{center}
 
 
-\end{minipage}
+\finishpage
 \end{document}
