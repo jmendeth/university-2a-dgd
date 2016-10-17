@@ -1,4 +1,4 @@
-\documentclass[catalan,border=15pt,class=scrartcl,multi=minipage]{standalone}
+\documentclass[catalan,border=15pt,class=scrartcl,multi=minipage,parskip=half*]{standalone}
 
 % encoding
 \usepackage[utf8]{inputenc}
@@ -34,6 +34,8 @@
 }}
 
 % custom commands
-\newcommand{\page}{\begin{minipage}{30em}}
+\newcommand{\startpage}{\begin{minipage}{30em}}
 \newcommand{\finishpage}{\end{minipage}}
 \newcommand{\iopair}[2]{\( \left(#1\right) \rightarrow #2 \)}
+
+%FIXME: don't use circ/to short, it's from circuitikz
