@@ -70,7 +70,7 @@ Escrivim l'expressió mínima en PdS:
     \left( \overline{x_3} + x_1 + x_0 \right)
 \end{equation*}
 
-Apliquem Morgan al producte per obtenir la expressió amb \textsf{NOR} de \textsf{NOR}s:
+Apliquem Morgan al producte per obtenir l'expressió en \textsf{NOR} de \textsf{NOR}s:
 %
 \begin{equation*}
   Y_0(x_3,x_2,x_1,x_0) = \overline{
@@ -192,12 +192,14 @@ Escrivim una expressió simplificada en SdP:
   Y_1(x_3,x_2,x_1,x_0) = x_3x_0 + x_2x_1x_0 + \overline{x_2}\overline{x_0}
 \end{equation*}
 
-Apliquem Morgan a la suma per convertir l'expressió en \textsf{NAND} de \textsf{NAND}s, i repetim factors en alguns productes per tal de tenir sempre 3 entrades:
+Apliquem Morgan a la suma per obtenir l'expressió en \textsf{NAND} de \textsf{NAND}s, i repetim factors en alguns productes per tal de tenir sempre 3 entrades:
 %
 \begin{equation*}
-  Y_1(x_3,x_2,x_1,x_0) = \overline{x_3 \cdot x_0 \cdot x_0}
-    + \overline{x_2 \cdot x_1 \cdot x_0}
-    + \overline{\overline{x_2} \cdot \overline{x_0} \cdot \overline{x_0}}
+  Y_1(x_3,x_2,x_1,x_0) = \overline{
+    \overline{x_3 \cdot x_0 \cdot x_0} \cdot
+    \overline{x_2 \cdot x_1 \cdot x_0} \cdot
+    \overline{\overline{x_2} \cdot \overline{x_0} \cdot \overline{x_0}}
+  }
 \end{equation*}
 
 El logigrama quedaria així:
@@ -351,7 +353,7 @@ Escrivim les expressions simplificades ara en SdP:
 
 Fixem-nos que, tot i que existeixen expressions més simples individualment per a $z_2$, la que hem fet servir ens beneficia perquè reutilitza productes de $z_1$, reduïnt el nombre de portes lògiques necessàries.
 
-Ara, apliquem Morgan a les sumes per convertir les expressions en \textsf{NAND} de \textsf{NAND}s (fent simplificacions trivials tipus $\overline{\overline{x}} = x$):
+Ara, apliquem Morgan a les sumes per obtenir les expressions en \textsf{NAND} de \textsf{NAND}s (fent simplificacions trivials tipus $\overline{\overline{x}} = x$):
 %
 \begin{align*}
   z_2 &= \overline{
