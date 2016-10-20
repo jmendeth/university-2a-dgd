@@ -25,21 +25,21 @@ Per fer-la només amb \textsf{NOT} i \textsf{OR}, manipulem l'expressió aplican
 
 I ja està. El logigrama queda així:
 
-\begin{center} \begin{tikzpicture}[circuit logic US] \draw
+\begin{center} \begin{tikzpicture}[circuit logic US, circuit ee IEC] \draw
 
 (0.0,0) coordinate (d) node[anchor=south] {$a$} (d) -- ++(0,-4.7)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-4.7) -- (d_not.output)
 
 (1.2,0) coordinate (d) node[anchor=south] {$b$} (d) -- ++(0,-4.7)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-4.7) -- (d_not.output)
 
 (2.4,0) coordinate (d) node[anchor=south] {$c$} (d) -- ++(0,-4.7)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-4.7) -- (d_not.output)
 
 ;
@@ -71,14 +71,14 @@ I ja està. El logigrama queda així:
 ;
 
 \draw
-  (and1.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
-  (and1.input 2 -| 1.2,0) ++(.5,0) node[circ] {}
+  (and1.input 1 -| 0.0,0) ++(.5,0) node[contact] {}
+  (and1.input 2 -| 1.2,0) ++(.5,0) node[contact] {}
 
-  (and2.input 1 -| 0.0,0)          node[circ] {}
-  (and2.input 2 -| 1.2,0)          node[circ] {}
+  (and2.input 1 -| 0.0,0)          node[contact] {}
+  (and2.input 2 -| 1.2,0)          node[contact] {}
 
-  (and3.input 1 -| 1.2,0)          node[circ] {}
-  (and3.input 2 -| 2.4,0) ++(.5,0) node[circ] {}
+  (and3.input 1 -| 1.2,0)          node[contact] {}
+  (and3.input 2 -| 2.4,0) ++(.5,0) node[contact] {}
 ;
 
 \end{tikzpicture} \end{center}
@@ -94,21 +94,21 @@ Per fer-la només amb \textsf{NOT} i \textsf{AND}, manipulem l'expressió aplica
 
 I ja està. El logigrama queda així:
 
-\begin{center} \begin{tikzpicture}[circuit logic US] \draw
+\begin{center} \begin{tikzpicture}[circuit logic US, circuit ee IEC] \draw
 
 (0.0,0) coordinate (d) node[anchor=south] {$a$} (d) -- ++(0,-4.7)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-4.7) -- (d_not.output)
 
 (1.2,0) coordinate (d) node[anchor=south] {$b$} (d) -- ++(0,-4.7)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-4.7) -- (d_not.output)
 
 (2.4,0) coordinate (d) node[anchor=south] {$c$} (d) -- ++(0,-4.7)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-4.7) -- (d_not.output)
 
 ;
@@ -142,14 +142,14 @@ I ja està. El logigrama queda així:
 ;
 
 \draw
-  (and1.input 1 -| 0.0,0)          node[circ] {}
-  (and1.input 2 -| 1.2,0)          node[circ] {}
+  (and1.input 1 -| 0.0,0)          node[contact] {}
+  (and1.input 2 -| 1.2,0)          node[contact] {}
 
-  (and2.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
-  (and2.input 2 -| 1.2,0) ++(.5,0) node[circ] {}
+  (and2.input 1 -| 0.0,0) ++(.5,0) node[contact] {}
+  (and2.input 2 -| 1.2,0) ++(.5,0) node[contact] {}
 
-  (and3.input 1 -| 1.2,0) ++(.5,0) node[circ] {}
-  (and3.input 2 -| 2.4,0)          node[circ] {}
+  (and3.input 1 -| 1.2,0) ++(.5,0) node[contact] {}
+  (and3.input 2 -| 2.4,0)          node[contact] {}
 ;
 
 \end{tikzpicture} \end{center}
@@ -185,23 +185,23 @@ Ara només queda canviar els negats per $\left(x \oplus 1\right)$:
 
 El logigrama queda així:
 
-\begin{center} \begin{tikzpicture}[circuit logic US] \draw
+\begin{center} \begin{tikzpicture}[circuit logic US, circuit ee IEC] \draw
 
 (0.0,0) coordinate (d) node[anchor=south] {$a$} (d) -- ++(0,-4.7)
 (d) ++(.5, -1) node[xor gate, inputs=nn, point down] (d_not) {}
-(d) ++(0,-0.3) node[circ] {} (d) ++(0,-0.3) -| (d_not.input 2)
+(d) ++(0,-0.3) node[contact] {} (d) ++(0,-0.3) -| (d_not.input 2)
 (d_not.input 1) -- ++(0,0.2) node [anchor=south] {$1$}
 (d) ++(.5,-4.7) -- (d_not.output)
 
 (1.2,0) coordinate (d) node[anchor=south] {$b$} (d) -- ++(0,-4.7)
 (d) ++(.5, -1) node[xor gate, inputs=nn, point down] (d_not) {}
-(d) ++(0,-0.3) node[circ] {} (d) ++(0,-0.3) -| (d_not.input 2)
+(d) ++(0,-0.3) node[contact] {} (d) ++(0,-0.3) -| (d_not.input 2)
 (d_not.input 1) -- ++(0,0.2) node [anchor=south] {$1$}
 (d) ++(.5,-4.7) -- (d_not.output)
 
 (2.4,0) coordinate (d) node[anchor=south] {$c$} (d) -- ++(0,-4.7)
 (d) ++(.5, -1) node[xor gate, inputs=nn, point down] (d_not) {}
-(d) ++(0,-0.3) node[circ] {} (d) ++(0,-0.3) -| (d_not.input 2)
+(d) ++(0,-0.3) node[contact] {} (d) ++(0,-0.3) -| (d_not.input 2)
 (d_not.input 1) -- ++(0,0.2) node [anchor=south] {$1$}
 (d) ++(.5,-4.7) -- (d_not.output)
 
@@ -228,15 +228,15 @@ El logigrama queda així:
 ;
 
 \draw
-  (and1.input 1 -| 0.0,0)          node[circ] {}
-  (and1.input 2 -| 1.2,0)          node[circ] {}
+  (and1.input 1 -| 0.0,0)          node[contact] {}
+  (and1.input 2 -| 1.2,0)          node[contact] {}
 
-  (and2.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
-  (and2.input 2 -| 1.2,0) ++(.5,0) node[circ] {}
+  (and2.input 1 -| 0.0,0) ++(.5,0) node[contact] {}
+  (and2.input 2 -| 1.2,0) ++(.5,0) node[contact] {}
 
-  (and3.input 1 -| 0.0,0)          node[circ] {}
-  (and3.input 2 -| 1.2,0) ++(.5,0) node[circ] {}
-  (and3.input 3 -| 2.4,0)          node[circ] {}
+  (and3.input 1 -| 0.0,0)          node[contact] {}
+  (and3.input 2 -| 1.2,0) ++(.5,0) node[contact] {}
+  (and3.input 3 -| 2.4,0)          node[contact] {}
 ;
 
 \end{tikzpicture} \end{center}
@@ -301,24 +301,24 @@ S'aplica Morgan a la suma exterior per convertir l'expressió en \textsf{NAND} d
 
 Només faltaria expressar els negats com $\overline{x\cdot x}$ per eliminar les \textsf{NOT}, però ho farem directament en el logigrama:
 
-\begin{center} \begin{tikzpicture}[circuit logic US] \draw
+\begin{center} \begin{tikzpicture}[circuit logic US, circuit ee IEC] \draw
 
 (0.0,0) coordinate (d) node[anchor=south] {$a$} (d) -- ++(0,-5.7)
 (d) ++(.5, -1) node[nand gate, inputs=nn, point down] (d_not) {}
-(d) ++(0,-0.3) node[circ] {} (d) ++(0,-0.3) -| (d_not.input 1)
-(d) ++(0,-0.45) node[circ] {} (d) ++(0,-0.45) -| (d_not.input 2)
+(d) ++(0,-0.3) node[contact] {} (d) ++(0,-0.3) -| (d_not.input 1)
+(d) ++(0,-0.45) node[contact] {} (d) ++(0,-0.45) -| (d_not.input 2)
 (d) ++(.5,-5.7) -- (d_not.output)
 
 (1.2,0) coordinate (d) node[anchor=south] {$b$} (d) -- ++(0,-5.7)
 (d) ++(.5, -1) node[nand gate, inputs=nn, point down] (d_not) {}
-(d) ++(0,-0.3) node[circ] {} (d) ++(0,-0.3) -| (d_not.input 1)
-(d) ++(0,-0.45) node[circ] {} (d) ++(0,-0.45) -| (d_not.input 2)
+(d) ++(0,-0.3) node[contact] {} (d) ++(0,-0.3) -| (d_not.input 1)
+(d) ++(0,-0.45) node[contact] {} (d) ++(0,-0.45) -| (d_not.input 2)
 (d) ++(.5,-5.7) -- (d_not.output)
 
 (2.4,0) coordinate (d) node[anchor=south] {$c$} (d) -- ++(0,-5.7)
 (d) ++(.5, -1) node[nand gate, inputs=nn, point down] (d_not) {}
-(d) ++(0,-0.3) node[circ] {} (d) ++(0,-0.3) -| (d_not.input 1)
-(d) ++(0,-0.45) node[circ] {} (d) ++(0,-0.45) -| (d_not.input 2)
+(d) ++(0,-0.3) node[contact] {} (d) ++(0,-0.3) -| (d_not.input 1)
+(d) ++(0,-0.45) node[contact] {} (d) ++(0,-0.45) -| (d_not.input 2)
 (d) ++(.5,-5.7) -- (d_not.output)
 
 ;
@@ -349,18 +349,18 @@ Només faltaria expressar els negats com $\overline{x\cdot x}$ per eliminar les 
 ;
 
 \draw
-  (and1.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
-  (and1.input 2 -| 1.2,0)          node[circ] {}
+  (and1.input 1 -| 0.0,0) ++(.5,0) node[contact] {}
+  (and1.input 2 -| 1.2,0)          node[contact] {}
 
-  (and2.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
-  (and2.input 2 -| 2.4,0)          node[circ] {}
+  (and2.input 1 -| 0.0,0) ++(.5,0) node[contact] {}
+  (and2.input 2 -| 2.4,0)          node[contact] {}
 
-  (and3.input 1 -| 1.2,0)          node[circ] {}
-  (and3.input 2 -| 2.4,0)          node[circ] {}
+  (and3.input 1 -| 1.2,0)          node[contact] {}
+  (and3.input 2 -| 2.4,0)          node[contact] {}
 
-  (and4.input 1 -| 0.0,0)          node[circ] {}
-  (and4.input 2 -| 1.2,0) ++(.5,0) node[circ] {}
-  (and4.input 3 -| 2.4,0) ++(.5,0) node[circ] {}
+  (and4.input 1 -| 0.0,0)          node[contact] {}
+  (and4.input 2 -| 1.2,0) ++(.5,0) node[contact] {}
+  (and4.input 3 -| 2.4,0) ++(.5,0) node[contact] {}
 ;
 
 \end{tikzpicture} \end{center}
@@ -370,7 +370,7 @@ Només faltaria expressar els negats com $\overline{x\cdot x}$ per eliminar les 
 
 Ens fixem en el mapa de Karnaugh de l'apartat A. El patró «d'escacs» ens resulta familiar. Concretament, ens recorda una \textsf{XOR}. Fem la prova de considerar que $f(a,b,c) = a \oplus b \oplus c$, i resulta que encaixa en la taula de veritat. El logigrama queda, doncs:
 
-\begin{center} \begin{tikzpicture}[circuit logic US] \draw
+\begin{center} \begin{tikzpicture}[circuit logic US, circuit ee IEC] \draw
   (0,1.0) coordinate (a) node[anchor=east] {$a$}
   (0,0.5) coordinate (b) node[anchor=east] {$b$}
   (0,0.0) coordinate (c) node[anchor=east] {$c$}

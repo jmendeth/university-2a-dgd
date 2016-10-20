@@ -54,26 +54,26 @@ S'implementaria amb les portes següents:
 
 El logigrama quedaria així:
 
-\begin{center} \begin{tikzpicture}[circuit logic US] \draw
+\begin{center} \begin{tikzpicture}[circuit logic US, circuit ee IEC, circuit ee IEC] \draw
 
 (0.0,0) coordinate (d) node[anchor=south] {$d$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (1.2,0) coordinate (d) node[anchor=south] {$c$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (2.4,0) coordinate (d) node[anchor=south] {$b$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (3.6,0) coordinate (d) node[anchor=south] {$a$} (d) -- ++(0,-5)
 %(d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-%(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+%(d_not.input) |- ++(-.5,.3) node[contact] {}
 %(d) ++(.5,-5) -- (d_not.output)
 
 ;
@@ -99,17 +99,17 @@ El logigrama quedaria així:
 ;
 
 \draw
-  (and1.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
-  (and1.input 2 -| 2.4,0) ++(.5,0) node[circ] {}
-  (and1.input 3 -| 3.6,0)          node[circ] {}
+  (and1.input 1 -| 0.0,0) ++(.5,0) node[contact] {}
+  (and1.input 2 -| 2.4,0) ++(.5,0) node[contact] {}
+  (and1.input 3 -| 3.6,0)          node[contact] {}
 
-  (and2.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
-  (and2.input 2 -| 1.2,0)          node[circ] {}
-  (and2.input 3 -| 3.6,0)          node[circ] {}
+  (and2.input 1 -| 0.0,0) ++(.5,0) node[contact] {}
+  (and2.input 2 -| 1.2,0)          node[contact] {}
+  (and2.input 3 -| 3.6,0)          node[contact] {}
 
-  (and3.input 1 -| 0.0,0)          node[circ] {}
-  (and3.input 2 -| 1.2,0) ++(.5,0) node[circ] {}
-  (and3.input 3 -| 3.6,0)          node[circ] {}
+  (and3.input 1 -| 0.0,0)          node[contact] {}
+  (and3.input 2 -| 1.2,0) ++(.5,0) node[contact] {}
+  (and3.input 3 -| 3.6,0)          node[contact] {}
 ;
 
 \end{tikzpicture} \end{center}
@@ -126,26 +126,26 @@ Passada a forma \textsf{NAND} de \textsf{NAND}s, l'expressió queda:
 
 El logigrama resultant és:
 
-\begin{center} \begin{tikzpicture}[circuit logic US] \draw
+\begin{center} \begin{tikzpicture}[circuit logic US, circuit ee IEC] \draw
 
 (0.0,0) coordinate (d) node[anchor=south] {$d$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (1.2,0) coordinate (d) node[anchor=south] {$c$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (2.4,0) coordinate (d) node[anchor=south] {$b$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (3.6,0) coordinate (d) node[anchor=south] {$a$} (d) -- ++(0,-5)
 %(d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-%(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+%(d_not.input) |- ++(-.5,.3) node[contact] {}
 %(d) ++(.5,-5) -- (d_not.output)
 
 ;
@@ -171,17 +171,17 @@ El logigrama resultant és:
 ;
 
 \draw
-  (and1.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
-  (and1.input 2 -| 2.4,0) ++(.5,0) node[circ] {}
-  (and1.input 3 -| 3.6,0)          node[circ] {}
+  (and1.input 1 -| 0.0,0) ++(.5,0) node[contact] {}
+  (and1.input 2 -| 2.4,0) ++(.5,0) node[contact] {}
+  (and1.input 3 -| 3.6,0)          node[contact] {}
 
-  (and2.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
-  (and2.input 2 -| 1.2,0)          node[circ] {}
-  (and2.input 3 -| 3.6,0)          node[circ] {}
+  (and2.input 1 -| 0.0,0) ++(.5,0) node[contact] {}
+  (and2.input 2 -| 1.2,0)          node[contact] {}
+  (and2.input 3 -| 3.6,0)          node[contact] {}
 
-  (and3.input 1 -| 0.0,0)          node[circ] {}
-  (and3.input 2 -| 1.2,0) ++(.5,0) node[circ] {}
-  (and3.input 3 -| 3.6,0)          node[circ] {}
+  (and3.input 1 -| 0.0,0)          node[contact] {}
+  (and3.input 2 -| 1.2,0) ++(.5,0) node[contact] {}
+  (and3.input 3 -| 3.6,0)          node[contact] {}
 ;
 
 \end{tikzpicture} \end{center}
@@ -206,26 +206,26 @@ S'implementaria amb les portes següents:
 
 El logigrama quedaria així:
 
-\begin{center} \begin{tikzpicture}[circuit logic US] \draw
+\begin{center} \begin{tikzpicture}[circuit logic US, circuit ee IEC] \draw
 
 (0.0,0) coordinate (d) node[anchor=south] {$d$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (1.2,0) coordinate (d) node[anchor=south] {$c$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (2.4,0) coordinate (d) node[anchor=south] {$b$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (3.6,0) coordinate (d) node[anchor=south] {$a$} (d) -- ++(0,-5)
 %(d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-%(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+%(d_not.input) |- ++(-.5,.3) node[contact] {}
 %(d) ++(.5,-5) -- (d_not.output)
 
 ;
@@ -250,14 +250,14 @@ El logigrama quedaria així:
 ;
 
 \draw
-  (and1.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
-  (and1.input 2 -| 1.2,0) ++(.5,0) node[circ] {}
+  (and1.input 1 -| 0.0,0) ++(.5,0) node[contact] {}
+  (and1.input 2 -| 1.2,0) ++(.5,0) node[contact] {}
 
-  (and2         -| 3.6,0)          node[circ] {}
+  (and2         -| 3.6,0)          node[contact] {}
 
-  (and3.input 1 -| 0.0,0)          node[circ] {}
-  (and3.input 2 -| 1.2,0)          node[circ] {}
-  (and3.input 3 -| 2.4,0) ++(.5,0) node[circ] {}
+  (and3.input 1 -| 0.0,0)          node[contact] {}
+  (and3.input 2 -| 1.2,0)          node[contact] {}
+  (and3.input 3 -| 2.4,0) ++(.5,0) node[contact] {}
 ;
 
 \end{tikzpicture} \end{center}
@@ -274,26 +274,26 @@ Passada a forma \textsf{NOR} de \textsf{NOR}s, l'expressió queda:
 
 El logigrama resultant és:
 
-\begin{center} \begin{tikzpicture}[circuit logic US] \draw
+\begin{center} \begin{tikzpicture}[circuit logic US, circuit ee IEC] \draw
 
 (0.0,0) coordinate (d) node[anchor=south] {$d$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (1.2,0) coordinate (d) node[anchor=south] {$c$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (2.4,0) coordinate (d) node[anchor=south] {$b$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (3.6,0) coordinate (d) node[anchor=south] {$a$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 ;
@@ -318,14 +318,14 @@ El logigrama resultant és:
 ;
 
 \draw
-  (and1.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
-  (and1.input 2 -| 1.2,0) ++(.5,0) node[circ] {}
+  (and1.input 1 -| 0.0,0) ++(.5,0) node[contact] {}
+  (and1.input 2 -| 1.2,0) ++(.5,0) node[contact] {}
 
-  (and2         -| 3.6,0) ++(.5,0) node[circ] {}
+  (and2         -| 3.6,0) ++(.5,0) node[contact] {}
 
-  (and3.input 1 -| 0.0,0)          node[circ] {}
-  (and3.input 2 -| 1.2,0)          node[circ] {}
-  (and3.input 3 -| 2.4,0) ++(.5,0) node[circ] {}
+  (and3.input 1 -| 0.0,0)          node[contact] {}
+  (and3.input 2 -| 1.2,0)          node[contact] {}
+  (and3.input 3 -| 2.4,0) ++(.5,0) node[contact] {}
 ;
 
 \end{tikzpicture} \end{center}

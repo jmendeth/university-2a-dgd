@@ -82,26 +82,26 @@ Apliquem Morgan al producte per obtenir l'expressió en \textsf{NOR} de \textsf{
 
 El logigrama quedaria així:
 
-\begin{center} \begin{tikzpicture}[circuit logic US] \draw
+\begin{center} \begin{tikzpicture}[circuit logic US, circuit ee IEC] \draw
 
 (0.0,0) coordinate (d) node[anchor=south] {$x_3$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (1.2,0) coordinate (d) node[anchor=south] {$x_2$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (2.4,0) coordinate (d) node[anchor=south] {$x_1$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (3.6,0) coordinate (d) node[anchor=south] {$x_0$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 ;
@@ -127,17 +127,17 @@ El logigrama quedaria així:
 ;
 
 \draw
-  (and1.input 1 -| 0.0,0)          node[circ] {}
-  (and1.input 2 -| 1.2,0) ++(.5,0) node[circ] {}
-  (and1.input 3 -| 2.4,0)          node[circ] {}
+  (and1.input 1 -| 0.0,0)          node[contact] {}
+  (and1.input 2 -| 1.2,0) ++(.5,0) node[contact] {}
+  (and1.input 3 -| 2.4,0)          node[contact] {}
 
-  (and2.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
-  (and2.input 2 -| 1.2,0) ++(.5,0) node[circ] {}
-  (and2.input 3 -| 3.6,0)          node[circ] {}
+  (and2.input 1 -| 0.0,0) ++(.5,0) node[contact] {}
+  (and2.input 2 -| 1.2,0) ++(.5,0) node[contact] {}
+  (and2.input 3 -| 3.6,0)          node[contact] {}
 
-  (and3.input 1 -| 0.0,0) ++(.5,0) node[circ] {}
-  (and3.input 2 -| 2.4,0)          node[circ] {}
-  (and3.input 3 -| 3.6,0)          node[circ] {}
+  (and3.input 1 -| 0.0,0) ++(.5,0) node[contact] {}
+  (and3.input 2 -| 2.4,0)          node[contact] {}
+  (and3.input 3 -| 3.6,0)          node[contact] {}
 ;
 
 \end{tikzpicture} \end{center}
@@ -204,26 +204,26 @@ Apliquem Morgan a la suma per obtenir l'expressió en \textsf{NAND} de \textsf{N
 
 El logigrama quedaria així:
 
-\begin{center} \begin{tikzpicture}[circuit logic US] \draw
+\begin{center} \begin{tikzpicture}[circuit logic US, circuit ee IEC] \draw
 
 (0.0,0) coordinate (d) node[anchor=south] {$x_3$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (1.2,0) coordinate (d) node[anchor=south] {$x_2$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (2.4,0) coordinate (d) node[anchor=south] {$x_1$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 (3.6,0) coordinate (d) node[anchor=south] {$x_0$} (d) -- ++(0,-5)
 (d) ++(.5, -1) node[not gate US, draw, point down] (d_not) {}
-(d_not.input) -- ++(0,.3) to[short, -*] ++(-.5,0)
+(d_not.input) |- ++(-.5,.3) node[contact] {}
 (d) ++(.5,-5) -- (d_not.output)
 
 ;
@@ -249,17 +249,17 @@ El logigrama quedaria així:
 ;
 
 \draw
-  (and1.input 1 -| 0.0,0)          node[circ] {}
-  (and1.input 2 -| 3.6,0)          node[circ] {}
-  (and1.input 3 -| 3.6,0)          node[circ] {}
+  (and1.input 1 -| 0.0,0)          node[contact] {}
+  (and1.input 2 -| 3.6,0)          node[contact] {}
+  (and1.input 3 -| 3.6,0)          node[contact] {}
 
-  (and2.input 1 -| 1.2,0)          node[circ] {}
-  (and2.input 2 -| 2.4,0)          node[circ] {}
-  (and2.input 3 -| 3.6,0)          node[circ] {}
+  (and2.input 1 -| 1.2,0)          node[contact] {}
+  (and2.input 2 -| 2.4,0)          node[contact] {}
+  (and2.input 3 -| 3.6,0)          node[contact] {}
 
-  (and3.input 1 -| 1.2,0) ++(.5,0) node[circ] {}
-  (and3.input 2 -| 3.6,0) ++(.5,0) node[circ] {}
-  (and3.input 3 -| 3.6,0) ++(.5,0) node[circ] {}
+  (and3.input 1 -| 1.2,0) ++(.5,0) node[contact] {}
+  (and3.input 2 -| 3.6,0) ++(.5,0) node[contact] {}
+  (and3.input 3 -| 3.6,0) ++(.5,0) node[contact] {}
 ;
 
 \end{tikzpicture} \end{center}
@@ -438,7 +438,7 @@ Per tant, només es produïrà un espuri estàtic quan l'entrada canviï de $\le
 \paragraph{Problema 2.18} Visualment es prepara el següent anàlisi modular:
 
 \vspace{1.3em} % hack for proper alignment
-\begin{center} \begin{tikzpicture}[circuit logic US]
+\begin{center} \begin{tikzpicture}[circuit logic US, circuit ee IEC]
   \node[mux, inputs=nn] at (1,1.5) (mux) {};
   \draw
     (0,0) node[or gate, inputs=nnn] (m_or) {}
@@ -492,7 +492,7 @@ La xarxa retorna la distància entre $A$ i $B$: $C = \left|A - B\right|$
 \subparagraph{Apartat C} El disseny per a \textsf{M\textsubscript{2}} és un multiplexor de 2~busos de 4~bits connectat apropiadament:
 
 \vspace{1.5em} % hack for proper alignment
-\begin{center} \begin{tikzpicture}[circuit logic US]
+\begin{center} \begin{tikzpicture}[circuit logic US, circuit ee IEC]
   \node[mux, inputs=nn] at (1,1.5) (mux) {};
   \draw (mux.select) -- ++(0,-.5) node[anchor=north] {$S$};
   \draw[ultra thick, <-] (mux.input 1) -- ++(-.5,0) node[anchor=east] {$V$};
@@ -506,7 +506,7 @@ Es pot comprovar que un \emph{restador en Ca2} es comporta com un \emph{restador
 
 Un restador en Ca2 es pot fer amb un negador i un sumador amb carry d'entrada 1, connectats adequadament:
 
-\begin{center} \begin{tikzpicture}[circuit logic US]
+\begin{center} \begin{tikzpicture}[circuit logic US, circuit ee IEC]
   \node[rectangle, draw, minimum height=2cm, minimum width=2cm] at (0,0) (sum) {$\sum$};
   \draw[font=\scriptsize, inner sep=2pt]
     (sum) ++(-.5,1) node[anchor=north] {$A$}
