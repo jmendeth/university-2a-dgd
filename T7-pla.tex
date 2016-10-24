@@ -1,0 +1,122 @@
+\input{../preamble.tex}
+\AfterPreamble{\hypersetup{
+  pdftitle={T7. Implementació sobre PLA},
+}}
+
+\begin{document}
+\startpage
+
+\subparagraph{Apartat A}
+
+Escrivim el mapa de Karnaugh de les tres funcions, $f_2$, $f_1$ i $f_0$ respectivament:
+
+\begin{center} \begin{tabular}{lcccc}
+\hspace{-.7em} \tikz[baseline=.1em]{\node at (.5em,.5em) {$x_1x_0$}; \node at (-.5em,-.5em) {$x_2$}; \draw (1em,-1em) -- (-1em,1em);}
+  & 00 & 01 & 11 & 10 \\
+0 &  0 &  1 &  0 &  1 \\
+1 &  0 &  1 &  0 &  0 \\
+\end{tabular} \end{center}
+
+\begin{center} \begin{tabular}{lcccc}
+\hspace{-.7em} \tikz[baseline=.1em]{\node at (.5em,.5em) {$x_1x_0$}; \node at (-.5em,-.5em) {$x_2$}; \draw (1em,-1em) -- (-1em,1em);}
+  & 00 & 01 & 11 & 10 \\
+0 &  0 &  1 &  0 &  1 \\
+1 &  0 &  1 &  1 &  1 \\
+\end{tabular} \end{center}
+
+\begin{center} \begin{tabular}{lcccc}
+\hspace{-.7em} \tikz[baseline=.1em]{\node at (.5em,.5em) {$x_1x_0$}; \node at (-.5em,-.5em) {$x_2$}; \draw (1em,-1em) -- (-1em,1em);}
+  & 00 & 01 & 11 & 10 \\
+0 &  1 &  1 &  0 &  1 \\
+1 &  0 &  0 &  0 &  1 \\
+\end{tabular} \end{center}
+
+Escrivim les expressions simplificades en SdP, tractant de reutilitzar productes comuns per tal de minimitzar el nombre de productes únics:
+
+\begin{align*}
+  f_2(x_2, x_1, x_0) &= \overline{x_1} x_0 + \overline{x_2} x_1 \overline{x_0} \\
+  f_1(x_2, x_1, x_0) &= \overline{x_1} x_0 + x_2 x_0 + x_1 \overline{x_0} \\
+  f_0(x_2, x_1, x_0) &= \overline{x_2} \overline{x_1} + x_1 \overline{x_0}
+\end{align*}
+
+\subparagraph{Apartat B}
+
+La PLA mínima on es pot encabir $F$ consta de 3~entrades, 3~sortides i 5~productes.
+
+\subparagraph{Apartat C}
+
+El logigrama quedaria així:
+
+\begin{center} \begin{tikzpicture}[circuit logic US, circuit ee IEC] \draw
+
+(0,2.4) coordinate (d) node[anchor=east] {$x_2$} (d) -- ++(6.7,0)
+(d) ++(1,.5) node[not gate US, draw] (d_not) {}
+(d_not.input) -| ++(-.3,-.5) node[contact] {}
+(d) ++(6.7,.5) -- (d_not.output)
+
+(0,1.2) coordinate (d) node[anchor=east] {$x_1$} (d) -- ++(6.7,0)
+(d) ++(1,.5) node[not gate US, draw] (d_not) {}
+(d_not.input) -| ++(-.3,-.5) node[contact] {}
+(d) ++(6.7,.5) -- (d_not.output)
+
+(0,0.0) coordinate (d) node[anchor=east] {$x_0$} (d) -- ++(6.7,0)
+(d) ++(1,.5) node[not gate US, draw] (d_not) {}
+(d_not.input) -| ++(-.3,-.5) node[contact] {}
+(d) ++(6.7,.5) -- (d_not.output)
+
+
+(2,-1) node[and gate, point down, logic gate inputs=nn] (and) {}
+(and.west) -- ++(0,4)
+(and.output) -- ++(0,-3)
+(2,1.7) node[contact] {}
+(2,0.0) node[contact] {}
+
+(3,-1) node[and gate, point down, logic gate inputs=nn] (and) {}
+(and.west) -- ++(0,4)
+(and.output) -- ++(0,-3)
+(3,2.4) node[contact] {}
+(3,0.0) node[contact] {}
+
+(4,-1) node[and gate, point down, logic gate inputs=nn] (and) {}
+(and.west) -- ++(0,4)
+(and.output) -- ++(0,-3)
+(4,1.2) node[contact] {}
+(4,0.5) node[contact] {}
+
+(5,-1) node[and gate, point down, logic gate inputs=nn] (and) {}
+(and.west) -- ++(0,4)
+(and.output) -- ++(0,-3)
+(5,2.9) node[contact] {}
+(5,1.7) node[contact] {}
+
+(6,-1) node[and gate, point down, logic gate inputs=nn] (and) {}
+(and.west) -- ++(0,4)
+(and.output) -- ++(0,-3)
+(6,2.9) node[contact] {}
+(6,1.2) node[contact] {}
+(6,0.5) node[contact] {}
+
+
+(7,-2.2) node[or gate, logic gate inputs=nn] (or) {}
+(or.west) -- ++(-5.3,0)
+(or.output) -- ++(.5,0) node[anchor=west] {$f_2$}
+(2,-2.2) node[contact] {}
+(6,-2.2) node[contact] {}
+
+(7,-3.0) node[or gate, logic gate inputs=nn] (or) {}
+(or.west) -- ++(-5.3,0)
+(or.output) -- ++(.5,0) node[anchor=west] {$f_1$}
+(2,-3.0) node[contact] {}
+(3,-3.0) node[contact] {}
+(4,-3.0) node[contact] {}
+
+(7,-3.8) node[or gate, logic gate inputs=nn] (or) {}
+(or.west) -- ++(-5.3,0)
+(or.output) -- ++(.5,0) node[anchor=west] {$f_0$}
+(5,-3.8) node[contact] {}
+(4,-3.8) node[contact] {}
+
+; \end{tikzpicture} \end{center}
+
+\finishpage
+\end{document}
