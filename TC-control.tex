@@ -1,0 +1,276 @@
+\input{../preamble.tex}
+\AfterPreamble{\hypersetup{
+  pdftitle={Parcial 1},
+}}
+
+\begin{document}
+
+\startpage
+\paragraph{Problema 1}
+
+\subparagraph{Apartat A}
+
+El codi ha de ser autocomplementari, i si tots els pesos son positius la codificació 1111 ha de correspondre al valor $9$.
+Per a què això sigui possible, $1 + 2 + 1 + x = 9 \Leftrightarrow x = 5$.
+
+Per tant $x$, en cas d'existir i ser positiu, ha de ser $5$.
+
+\subparagraph{Apartat B}
+
+Assignem codificacions per als primers 5 valors:
+%
+\begin{align*}
+  0000 &\rightarrow 0 \\
+  0010 &\rightarrow 1 \\
+  0100 &\rightarrow 2 \\
+  0110 &\rightarrow 3 \\
+  1110 &\rightarrow 4
+\end{align*}
+%
+La resta de codificacions queden determinades perquè el codi és autocomplementari:
+%
+\begin{align*}
+  0001 &\rightarrow 5 \\
+  1001 &\rightarrow 6 \\
+  1011 &\rightarrow 7 \\
+  1101 &\rightarrow 8 \\
+  1111 &\rightarrow 9
+\end{align*}
+
+Tot quadra, tenim un codi BCD ponderat autocomplementari vàlid.
+
+\subparagraph{Apartat C}
+
+Una opció és assignar pes $-9$ al cinquè bit. Llavors, quan estigui activat, les combinacions
+dels bits existents recorren el rang $\left[-9,0\right]$. Només caldria descartar una de
+les dues representacions de $0$ resultants. El codi podria quedar així:
+%
+\begin{align*}
+  10000 &\rightarrow -9 \\
+  10010 &\rightarrow -8 \\
+  10100 &\rightarrow -7 \\
+  10110 &\rightarrow -6 \\
+  11110 &\rightarrow -5 \\
+  10001 &\rightarrow -4 \\
+  11001 &\rightarrow -3 \\
+  11011 &\rightarrow -2 \\
+  11101 &\rightarrow -1 \\
+  00000 &\rightarrow  0 \\
+  00010 &\rightarrow +1 \\
+  00100 &\rightarrow +2 \\
+  00110 &\rightarrow +3 \\
+  01110 &\rightarrow +4 \\
+  00001 &\rightarrow +5 \\
+  01001 &\rightarrow +6 \\
+  01011 &\rightarrow +7 \\
+  01101 &\rightarrow +8 \\
+  01111 &\rightarrow +9
+\end{align*}
+
+Que a més té la particularitat de que segueix sent autocomplementari excepte per
+la doble representació del 0.
+
+\finishpage
+
+\startpage
+\paragraph{Problema 2}
+
+\subparagraph{Apartat A}
+
+Escrivim la taula de veritat:
+
+\begin{center} \begin{tabular}{ccccccc}
+$b_3 b_2 b_1 b_0$ & $y_5$ & $y_4$ & $y_3$ & $y_2$ & $y_1$ & $y_0$ \\
+\hline
+0000 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0001 & 0 & 0 & 0 & 1 & 0 & 1 \\
+0010 & 0 & 0 & 1 & 0 & 1 & 0 \\
+0011 & 0 & 0 & 1 & 1 & 1 & 1 \\
+0100 & 0 & 1 & 0 & 1 & 0 & 0 \\
+0101 & 0 & 1 & 1 & 0 & 0 & 1 \\
+0110 & 0 & 1 & 1 & 1 & 1 & 0 \\
+0111 & 1 & 0 & 0 & 0 & 1 & 1 \\
+1000 & 1 & 0 & 1 & 0 & 0 & 0 \\
+1001 & 1 & 0 & 1 & 1 & 0 & 1 \\
+1010 &-- &-- &-- &-- &-- &-- \\
+1011 &-- &-- &-- &-- &-- &-- \\
+1100 &-- &-- &-- &-- &-- &-- \\
+1101 &-- &-- &-- &-- &-- &-- \\
+1110 &-- &-- &-- &-- &-- &-- \\
+1111 &-- &-- &-- &-- &-- &--
+\end{tabular} \end{center}
+
+Per a $y_0$ i $y_1$, es veu a simple vista que:
+%
+\begin{align*}
+  y_0 &= b_0 \\
+  y_1 &= b_1
+\end{align*}
+
+Per a les altres quatre sortides, fem el mapa de Karnaugh.
+
+Per a $y_2$:
+
+\begin{center} \begin{tabular}{lcccc}
+\hspace{-.7em} \tikz[baseline=.1em]{\node at (.5em,.5em) {$b_1b_0$}; \node at (-.5em,-.5em) {$b_3b_2$}; \draw (1em,-1em) -- (-1em,1em);}
+   & 00 & 01 & 11 & 10 \\
+00 &  0 &  1 &  1 &  0 \\
+01 &  1 &  0 &  0 &  1 \\
+11 & -- & -- & -- & -- \\
+10 &  0 &  1 & -- & --
+\end{tabular} \end{center}
+%
+\begin{equation*}
+  y_2 = b_2 \overline{b_0} + \overline{b_2} b_0
+\end{equation*}
+
+Per a $y_3$:
+
+\begin{center} \begin{tabular}{lcccc}
+\hspace{-.7em} \tikz[baseline=.1em]{\node at (.5em,.5em) {$b_1b_0$}; \node at (-.5em,-.5em) {$b_3b_2$}; \draw (1em,-1em) -- (-1em,1em);}
+   & 00 & 01 & 11 & 10 \\
+00 &  0 &  0 &  1 &  1 \\
+01 &  0 &  1 &  0 &  1 \\
+11 & -- & -- & -- & -- \\
+10 &  1 &  1 & -- & --
+\end{tabular} \end{center}
+%
+\begin{equation*}
+  y_3 = b_2 \overline{b_1} b_0 + b_1 \overline{b_2} + b_1 \overline{b_0} + b_3
+\end{equation*}
+
+Per a $y_4$:
+
+\begin{center} \begin{tabular}{lcccc}
+\hspace{-.7em} \tikz[baseline=.1em]{\node at (.5em,.5em) {$b_1b_0$}; \node at (-.5em,-.5em) {$b_3b_2$}; \draw (1em,-1em) -- (-1em,1em);}
+   & 00 & 01 & 11 & 10 \\
+00 &  0 &  0 &  0 &  0 \\
+01 &  1 &  1 &  0 &  1 \\
+11 & -- & -- & -- & -- \\
+10 &  0 &  0 & -- & --
+\end{tabular} \end{center}
+%
+\begin{equation*}
+  y_4 = b_2 \overline{b_0} + b_2 \overline{b_1}
+\end{equation*}
+
+Per a $y_5$:
+
+\begin{center} \begin{tabular}{lcccc}
+\hspace{-.7em} \tikz[baseline=.1em]{\node at (.5em,.5em) {$b_1b_0$}; \node at (-.5em,-.5em) {$b_3b_2$}; \draw (1em,-1em) -- (-1em,1em);}
+   & 00 & 01 & 11 & 10 \\
+00 &  0 &  0 &  0 &  0 \\
+01 &  0 &  0 &  1 &  0 \\
+11 & -- & -- & -- & -- \\
+10 &  1 &  1 & -- & --
+\end{tabular} \end{center}
+%
+\begin{equation*}
+  y_5 = b_3 + b_2 b_1 b_0
+\end{equation*}
+
+\subparagraph{Apartat B}
+
+La funció que estem realitzant té quatre entrades i sis sortides. Cap sortida és
+suma de més de 4 productes.
+
+Per tant, la PAL mínima per a realitzar el bloc \textsf{B1} consta de 4 entrades,
+4 productes i 6 sortides.
+
+\subparagraph{Apartat C}
+
+A simple vista es veu que una combinació $a_3...a_0$ no pertany al codi BCD
+si $a_3 \cdot \left( a_2 + a_1 \right) = 1$.
+
+Per tant, el bloc \textsf{ERR} es podria descriure per l'expressió:
+%
+\begin{equation*}
+ ERR = a_3 \cdot \left( a_2 + a_1 \right) + b_3 \cdot \left( b_2 + b_1 \right)
+\end{equation*}
+
+La taula de veritat (parcial) en funció de $a_3$ i $b_3$ és:
+
+\begin{center} \begin{tabular}{ccccccc}
+$b_3$ & $a_3$ & $ERR$ \\
+\hline
+0 & 0 & $0$ \\
+0 & 1 & $a_2 + a_1$ \\
+1 & 0 & $b_2 + b_1$ \\
+1 & 1 & $\left( a_2 + a_1 \right) + \left( b_2 + b_1 \right)$
+\end{tabular} \end{center}
+
+El logigrama amb un MUX 4:1 quedaria així:
+
+\begin{center} \begin{tikzpicture}[circuit logic US, circuit ee IEC]
+  \node[mux, inputs=nnnn] at (3,0) (mux) {};
+  \draw
+    (0,.5) node[or gate, inputs=nn] (or_a) {}
+    (0,-.5) node[or gate, inputs=nn] (or_b) {}
+    (or_a.input 1) -- ++(-.5,0) node[anchor=east] {$a_2$}
+    (or_a.input 2) -- ++(-.5,0) node[anchor=east] {$a_1$}
+    (or_b.input 1) -- ++(-.5,0) node[anchor=east] {$b_2$}
+    (or_b.input 2) -- ++(-.5,0) node[anchor=east] {$b_1$}
+    
+    (mux.input 4) ++(-1,-.2) node[or gate, inputs=nn] (or_ab) {}
+    (or_b.output) ++(.2,0) node[contact] {}
+    (or_b.output) ++(.2,0) |- (or_ab.input 2)
+    
+    (mux.input 2) ++(-1.7,0) node[contact] {}
+    (mux.input 2) ++(-1.7,0) |- (or_ab.input 1)
+  ;
+  \draw[<-] (mux.input 1) -- ++(-.5,0) node[anchor=east] {$0$};
+  \draw[->] (or_a.output) -- ++(.2,0) |- (mux.input 2);
+  \draw[->] (or_b.output) -- ++(.2,0) |- (mux.input 3);
+  \draw[->] (or_ab.output) -- ++(.2,0) |- (mux.input 4);
+  \draw[ultra thick] (mux.select) -- ++(0,-.5) node[anchor=north] {$b_3a_3$};
+  \draw[->] (mux.output) -- ++(.5,0) node[anchor=west] {$ERR$};
+\end{tikzpicture} \end{center}
+
+\subparagraph{Apartat D}
+
+Hem de tenir en compte que desplaçar (emplenant amb zeros) un nombre codificat
+en binari natural $n$ bits cap a la dreta equival a multiplicar per $2^n$
+el valor codificat. Llavors, el bloc \textsf{B1} es pot descriure com:
+%
+\begin{equation*}
+  Y = \left(B \cdot 2^2\right) + B = 5B
+\end{equation*}
+%
+La suma no sortirà mai de rang per a cap de les entrades possibles, per tant
+l'expressió descriu perfectament el comportament del bloc.
+
+Anàlogament, per a \textsf{B2} tenim:
+%
+\begin{equation*}
+  Z = \left(Y \cdot 2^1\right) + A = 2Y + A
+\end{equation*}
+
+Per tant, els blocs \textsf{B1} i \textsf{B2} conjuntament efectuen l'operació:
+%
+\begin{equation*}
+  Z = 10B + A
+\end{equation*}
+%
+En altres paraules: es retorna a $Z$ el valor, en binari natural,
+que representen $b_3...b_0\,a_3...a_0$ codificats en BCD.
+
+Estem davant un \emph{convertidor de BCD natural de dues xifres a binari natural}.
+
+\subparagraph{Apartat E}
+
+Al primer buit:
+
+\begin{minted}{vhdl}
+signal P : std_logic_vector(7 downto 0);
+\end{minted}
+
+Al segon buit:
+
+\begin{minted}{vhdl}
+P <= "1010" * B;
+Z <= P(6 downto 0) + ("000" & A);
+\end{minted}
+
+\finishpage
+
+\end{document}
