@@ -22,6 +22,7 @@
 \usetikzlibrary{circuits.logic.US,circuits.logic.IEC}
 \usetikzlibrary{circuits.logic.mux}
 %\usepackage{karnaugh}
+\usepackage{minted}
 
 % other options
 \setcounter{tocdepth}{6}
@@ -35,6 +36,6 @@
 }}
 
 % custom commands
-\newcommand{\startpage}{\begin{minipage}{30em}}
+\newcommand{\startpage}{\begin{minipage}{30em} \setlength{\parskip}{0.5em}}
 \newcommand{\finishpage}{\end{minipage}}
 \newcommand{\iopair}[2]{\( \left(#1\right) \rightarrow #2 \)}
