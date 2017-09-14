@@ -1,0 +1,178 @@
+\input{../preamble.tex}
+\renewcommand{\startpage}{\begin{minipage}{40em} \setlength{\parskip}{0.5em}}
+\AfterPreamble{\hypersetup{
+  pdftitle={T12. Càlcul de tensió V\_OL},
+}}
+
+\begin{document}
+\startpage
+
+Anem a analitzar, primer, l'inversor sense donar valors a cap paràmetre. Modelem el transistor com:
+%
+\begin{equation*}
+  I_D = \begin{cases}
+    0 & \text{si $V_e \leq 0$} \\
+    K \left( V_{DS}V_e - \frac{V_{DS}^2}{2} \right) & \text{si $V_e > 0; V_{DS} < V_e$} \\
+    K \frac{V_e^2}{2} & \text{si $V_e > 0; V_{DS} \geq V_e$}
+  \end{cases}
+\end{equation*}
+
+On $K > 0$, $V_{DS} \geq 0$ i $V_e = V_{GS} - V_T$.
+
+Apliquem el model al circuit
+i escrivim KCLs per a tots els nodes desconeguts:
+%
+\begin{align*}
+\begin{cases}
+  I_D = \begin{cases}
+    0 & \text{si $V_e \leq 0$} \\
+    K \left( V_oV_e - \frac{V_o^2}{2} \right) & \text{si $V_e > 0; V_o < V_e$} \\
+    K \frac{V_e^2}{2} & \text{si $V_e > 0; V_o \geq V_e$}
+  \end{cases} \\
+%
+  V_e = V_i - V_T \\
+%
+  I_D = \frac{V_{DD} - V_o}{R_L} \\
+%
+  R_L, K, V_{DD} > 0
+\end{cases}
+\end{align*}
+
+Ara particularitzem per a cada tram.
+
+\finishpage
+\startpage
+
+
+\paragraph{Zona de tall}
+
+\begin{align*}
+  I_D &= 0 \\
+  V_e &\leq 0
+\end{align*}
+
+Es veu a simple vista que si substituim $I_D$ en el KCL, resulta:
+%
+\begin{align*}
+  V_o = V_{DD}
+\end{align*}
+
+
+\paragraph{Zona de saturació}
+
+\begin{align*}
+  I_D &= K \frac{V_e^2}{2} \\
+  V_e &> 0 \\
+  V_o &\geq V_e
+\end{align*}
+
+Subsituïm $I_D$ al KCL i aïllem $V_o$ en funció de $V_e$:
+%
+\begin{align*}
+  K \frac{V_e^2}{2} &= \frac{V_{DD} - V_o}{R_L} \\
+  V_o &= V_{DD} - \frac{R_L K}{2} V_e^2
+\end{align*}
+
+Ara substituïm $V_o$ en la condició $V_o \geq V_e$ per expressar-la en funció
+de $V_e$:
+%
+\begin{align*}
+  V_{DD} - \frac{R_L K}{2} V_e^2 &\geq V_e \\
+  \frac{R_L K}{2} V_e^2 + V_e - V_{DD} &\leq 0
+\end{align*}
+
+
+\paragraph{Zona òhmica}
+
+\begin{align*}
+  I_D &= K \left( V_oV_e - \frac{V_o^2}{2} \right) \\
+  V_e &> 0 \\
+  V_o &< V_e
+\end{align*}
+
+Substituïm $I_D$ al KCL i aïllem $V_o$ en funció de $V_e$:
+%
+\begin{align*}
+  K \left( V_oV_e - \frac{V_o^2}{2} \right) &= \frac{V_{DD} - V_o}{R_L} \\
+  V_oV_e - \frac{V_o^2}{2} &= \frac{V_{DD}}{R_L K} - \frac{V_o}{R_L K} \\
+  0 &= \frac{V_o^2}{2} - V_oV_e - \frac{V_o}{R_L K} + \frac{V_{DD}}{R_L K} \\
+  0 &= \frac{R_L K}{2} V_o^2 - \left(R_L K V_e + 1\right) V_o + V_{DD} \\
+  V_o &= \frac{\left(R_L K V_e + 1\right) \pm \sqrt{\left(R_L K V_e + 1\right)^2 - 2 R_L K V_{DD}}}{R_L K} \\
+  V_o &= V_e + \frac{1 \pm \sqrt{\left(R_L K V_e + 1\right)^2 - 2 R_L K V_{DD}}}{R_L K}
+\end{align*}
+%
+Per a satisfer $V_o < V_e$ la fracció ha de ser negativa. Per tant, podem
+descartar una de les solucions:
+%
+\begin{align*}
+  V_o &= V_e + \frac{1 - \sqrt{\left(R_L K V_e + 1\right)^2 - 2 R_L K V_{DD}}}{R_L K}
+\end{align*}
+%
+En particular, perquè la fracció sigui negativa, el radicand ha de ser més gran
+que la unitat. Això garantitza que $V_o$ existeix i satisfà $V_o < V_e$.
+%
+\begin{align*}
+  \left(R_L K V_e + 1\right)^2 - 2 R_L K V_{DD} &> 1 \\
+  \frac{R_L K}{2} V_e^2 + V_e - V_{DD} &> 0
+\end{align*}
+
+\finishpage
+\startpage
+
+
+Ara podem escriure $V_o$ en funció de $V_e$, definit com a funció a trams:
+%
+\begin{equation*}
+  V_o = \begin{cases}
+    V_{DD} & \text{si $V_e \leq 0$} \\
+    V_e + \frac{1 - \sqrt{\left(R_L K V_e + 1\right)^2 - 2 R_L K V_{DD}}}{R_L K} & \text{si $V_e > 0; \frac{R_L K}{2} V_e^2 + V_e - V_{DD} > 0$} \\
+    V_{DD} - \frac{R_L K}{2} V_e^2 & \text{si $V_e > 0; \frac{R_L K}{2} V_e^2 + V_e - V_{DD} \leq 0$}
+  \end{cases}
+\end{equation*}
+
+Simplificarem ara les condicions complementàries del segon i tercer tram.
+%
+\begin{align*}
+  \frac{R_L K}{2} V_e^2 + V_e - V_{DD} &\leq 0
+\end{align*}
+%
+El disciminant del polinomi de segon grau és $1 + 2 R_L K V_{DD}$, que sempre
+és positiu. Per tant, la condició és equivalent a:
+%
+\begin{align*}
+  V_e &\in \left[ \frac{-\sqrt{1 + 2 R_L K V_{DD}} -1}{R_L K}, \frac{\sqrt{1 + 2 R_L K V_{DD}} -1}{R_L K} \right]
+\end{align*}
+%
+Com que a més, $V_e > 0$ i l'extrem inferior de l'interval és negatiu, podem escriure simplement:
+%
+\begin{equation*}
+  V_e \leq \frac{\sqrt{1 + 2 R_L K V_{DD}} -1}{R_L K}
+\end{equation*}
+
+Procedim de forma similar amb la condició del tercer tram, que és complementària:
+%
+\begin{align*}
+  V_e &\notin \left[ \frac{-\sqrt{1 + 2 R_L K V_{DD}} -1}{R_L K}, \frac{\sqrt{1 + 2 R_L K V_{DD}} -1}{R_L K} \right]
+\end{align*}
+\begin{equation*}
+  V_e > \frac{\sqrt{1 + 2 R_L K V_{DD}} -1}{R_L K}
+\end{equation*}
+
+La corba de transferència resultant, amb les condicions simplificades
+i substituint $V_e = V_i - V_T$, resulta:
+
+\begin{equation*}
+  V_o = \begin{cases}
+    V_{DD} & \text{si $V_i \leq V_T$} \\
+    \left(V_i - V_T\right) + \frac{1 - \sqrt{\left(k \left(V_i - V_T\right) + 1\right)^2 - 2 k V_{DD}}}{k} & \text{si $V_T < V_i \leq V'_T$} \\
+    V_{DD} - \frac{k}{2} \left(V_i - V_T\right)^2 & \text{si $V_i > V'_T$}
+  \end{cases}
+\end{equation*}
+%
+\begin{center}
+amb $V'_T = V_T + \frac{\sqrt{1 + 2 k V_{DD}} -1}{k}$ i $k = R_L K$
+\end{center}
+
+
+\finishpage
+\end{document}
